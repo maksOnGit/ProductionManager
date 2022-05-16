@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProductionManager_EndProject.Migrations
 {
-    public partial class NewDay : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -339,8 +339,7 @@ namespace ProductionManager_EndProject.Migrations
                         name: "FK_Orders_Productions_ProductionId",
                         column: x => x.ProductionId,
                         principalTable: "Productions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -385,18 +384,11 @@ namespace ProductionManager_EndProject.Migrations
                     Quantitie = table.Column<int>(type: "int", nullable: false),
                     EstimatedQuantitie = table.Column<int>(type: "int", nullable: false),
                     MinEstimation = table.Column<int>(type: "int", nullable: false),
-                    MaxEstimation = table.Column<int>(type: "int", nullable: false),
-                    ProductionId = table.Column<int>(type: "int", nullable: true)
+                    MaxEstimation = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lots", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Lots_Productions_ProductionId",
-                        column: x => x.ProductionId,
-                        principalTable: "Productions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Lots_Products_ProductId",
                         column: x => x.ProductId,
@@ -407,8 +399,7 @@ namespace ProductionManager_EndProject.Migrations
                         name: "FK_Lots_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -433,8 +424,7 @@ namespace ProductionManager_EndProject.Migrations
                         name: "FK_ProductOrders_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -490,11 +480,6 @@ namespace ProductionManager_EndProject.Migrations
                 name: "IX_Lots_ProductId",
                 table: "Lots",
                 column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Lots_ProductionId",
-                table: "Lots",
-                column: "ProductionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lots_RoomId",

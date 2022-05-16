@@ -10,8 +10,8 @@ using ProductionManager_EndProject.Data;
 namespace ProductionManager_EndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220516014836_NewDay")]
-    partial class NewDay
+    [Migration("20220516193620_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -299,9 +299,6 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantitie")
                         .HasColumnType("int");
 
@@ -314,8 +311,6 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductionId");
 
                     b.HasIndex("RoomId");
 
@@ -660,14 +655,10 @@ namespace ProductionManager_EndProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProductionLibrary.Production", null)
-                        .WithMany("Lots")
-                        .HasForeignKey("ProductionId");
-
                     b.HasOne("ProductionLibrary.Room", "Room")
                         .WithMany("Lots")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -686,7 +677,7 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasOne("ProductionLibrary.Production", "Production")
                         .WithMany("Orders")
                         .HasForeignKey("ProductionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProductionLibrary.User", "User")
@@ -758,7 +749,7 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasOne("ProductionLibrary.Product", "Product")
                         .WithMany("ProductOrders")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -811,8 +802,6 @@ namespace ProductionManager_EndProject.Migrations
             modelBuilder.Entity("ProductionLibrary.Production", b =>
                 {
                     b.Navigation("Clients");
-
-                    b.Navigation("Lots");
 
                     b.Navigation("Orders");
 

@@ -24,5 +24,31 @@ namespace ProductionManager_EndProject.Data
         public DbSet<ProductOrder> ProductOrders { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //FluentApi
+
+            builder.Entity<Order>()
+                .HasOne(o => o.Production)
+                .WithMany(p => p.Orders)
+                .HasForeignKey(o => o.ProductionId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Lot>()
+                .HasOne(l => l.Room)
+                .WithMany(p => p.Lots)
+                .HasForeignKey(l => l.RoomId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<ProductOrder>()
+                .HasOne(l => l.Product)
+                .WithMany(p => p.ProductOrders)
+                .HasForeignKey(l => l.ProductId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            base.OnModelCreating(builder);  
+        }
     }
 }

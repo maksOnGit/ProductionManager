@@ -24,7 +24,7 @@ namespace ProductionLibrary
         public IEnumerable<Order> Orders { get; set; }
         public IEnumerable<Client> Clients { get; set; }
         public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<Lot> Lots { get; set; }
+        //public IEnumerable<Lot> Lots { get; set; }
 
 
 
