@@ -9,10 +9,10 @@ namespace ProductionLibrary
     public class Order
     {
         public int Id { get; set; }
-        public Guid Reference { get; set; }
+        public string Reference { get; set; }
         public int Price { get; set; }
         public int ClientId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int ProductionId { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime DeliveryDate { get; set; }
