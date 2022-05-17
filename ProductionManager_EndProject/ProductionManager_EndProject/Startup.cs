@@ -35,7 +35,7 @@ namespace ProductionManager_EndProject
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>(); 
             services.AddControllersWithViews();
         }
 

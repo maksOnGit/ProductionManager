@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -61,6 +62,35 @@ namespace ProductionManager_EndProject.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //Custom Properties
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at max {1} characters long.")]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at max {1} characters long.")]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at max {1} characters long.")]
+            public string Country { get; set; }
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at max {1} characters long.")]
+            public string City { get; set; }
+            [Required]
+            [StringLength(50, ErrorMessage = "The {0} must be at max {1} characters long.")]
+            public string Street { get; set; }
+            [Required]
+            [Display(Name = "House Number")]
+            public int Number { get; set; }
+            [Required]
+            [Display(Name = "Postal Code")]
+            public int ZIP { get; set; }
+            [Display(Name = "Image")]
+            public string ImageUrl { get; set; }
+            [Required]
+            public DateTime Birthday { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +105,22 @@ namespace ProductionManager_EndProject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                MailAddress address = new MailAddress(Input.Email);
+                string userName = address.User;
+                var user = new User 
+                {
+                    UserName = userName,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    Country = Input.Country,
+                    City = Input.City,
+                    Street = Input.Street,
+                    Number = Input.Number,
+                    ZIP = Input.ZIP,
+                    BirthDay = Input.Birthday,
+                    ImageUrl = Input.ImageUrl
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
