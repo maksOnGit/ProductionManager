@@ -159,7 +159,7 @@ namespace ProductionManager_EndProject.Data
                 .HasMaxLength(50)
                 .IsRequired();
             
-            //Order
+            //ProductOrder
             builder.Entity<ProductOrder>()
                 .HasOne(l => l.Product)
                 .WithMany(p => p.ProductOrders)
