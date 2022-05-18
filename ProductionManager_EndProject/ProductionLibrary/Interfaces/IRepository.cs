@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductionLibrary.Interfaces
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     { 
         Task<IEnumerable<T>> ListAll();
         IQueryable<T> GetAll();
