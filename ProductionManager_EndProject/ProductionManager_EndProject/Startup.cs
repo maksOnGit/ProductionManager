@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductionLibrary;
 using ProductionManager_EndProject.Data;
+using ProductionManager_EndProject.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,18 @@ namespace ProductionManager_EndProject
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>(); 
+
+            services.AddScoped<ClientRepository>();
+            services.AddScoped<LotRepository>();
+            services.AddScoped<OrderRepository>();
+            services.AddScoped<ProdTaskRepository>();
+            services.AddScoped<ProdTaskStatusRepository>();
+            services.AddScoped<ProdTaskUserRepository>();
+            services.AddScoped<ProductRepository>();
+            services.AddScoped<ProductionRepository>();
+            services.AddScoped<ProductOrderRepository>();
+            services.AddScoped<RoomRepository>();
+            services.AddScoped<UserRepository>();
             services.AddControllersWithViews();
         }
 

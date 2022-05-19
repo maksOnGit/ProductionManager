@@ -10,8 +10,8 @@ using ProductionManager_EndProject.Data;
 namespace ProductionManager_EndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220517120607_init")]
-    partial class init
+    [Migration("20220518224056_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
