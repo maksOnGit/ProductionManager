@@ -1,4 +1,4 @@
-﻿@model ProductionLibrary.Production
+﻿@model ProductionLibrary.Client
 
 @{
     ViewData["Title"] = "Create";
@@ -7,16 +7,16 @@
 
 <h1>Create</h1>
 
-<h4>Production</h4>
+<h4>Client</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProductionName" class="control-label"></label>
-                <input asp-for="ProductionName" class="form-control" />
-                <span asp-validation-for="ProductionName" class="text-danger"></span>
+                <label asp-for="ClientId" class="control-label"></label>
+                <input asp-for="ClientId" class="form-control" />
+                <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -52,6 +52,11 @@
                 <label asp-for="Number" class="control-label"></label>
                 <input asp-for="Number" class="form-control" />
                 <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

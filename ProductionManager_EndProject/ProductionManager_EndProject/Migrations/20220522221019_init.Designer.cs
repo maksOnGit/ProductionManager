@@ -10,8 +10,8 @@ using ProductionManager_EndProject.Data;
 namespace ProductionManager_EndProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220518224056_initial")]
-    partial class initial
+    [Migration("20220522221019_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -158,17 +158,11 @@ namespace ProductionManager_EndProject.Migrations
 
             modelBuilder.Entity("ProductionLibrary.Client", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .IsRequired()
+                    b.Property<string>("ClientId")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ClientName")
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -194,9 +188,6 @@ namespace ProductionManager_EndProject.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ProductionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -205,11 +196,44 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("ZIP")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductionId");
+                    b.HasKey("ClientId");
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            ClientId = "Luxus Restaurant",
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "LuxusRest@outlook.be",
+                            Number = 5,
+                            PhoneNumber = "02/458.124",
+                            Street = "Food Straat",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            ClientId = "SmartKitchens-Anderlecht",
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "SmartKitchens1000@outlook.be",
+                            Number = 152,
+                            PhoneNumber = "02/358.424",
+                            Street = "Food Straat",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            ClientId = "RoyVeggies",
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "RoyBalzac@outlook.be",
+                            Number = 5,
+                            PhoneNumber = "02/124.124",
+                            Street = "Butcher's Street",
+                            ZIP = 1000
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.Lot", b =>
@@ -219,20 +243,20 @@ namespace ProductionManager_EndProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EstimatedQuantitie")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("EstimatedQuantitie")
+                        .HasColumnType("float");
 
                     b.Property<bool?>("IsGrowing")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsLoose")
-                        .HasColumnType("bit");
+                    b.Property<double?>("MaxEstimation")
+                        .HasColumnType("float");
 
-                    b.Property<int?>("MaxEstimation")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinEstimation")
-                        .HasColumnType("int");
+                    b.Property<double?>("MinEstimation")
+                        .HasColumnType("float");
 
                     b.Property<string>("PositionInRoom")
                         .HasColumnType("nvarchar(max)");
@@ -240,14 +264,20 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Quantitie")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RecoltedQuantitie")
-                        .HasColumnType("int");
+                    b.Property<string>("QuantitificationUnit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("RecoltedQuantitie")
+                        .HasColumnType("float");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -256,6 +286,53 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Lots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EstimatedQuantitie = 50.0,
+                            IsGrowing = true,
+                            MaxEstimation = 60.0,
+                            MinEstimation = 40.0,
+                            PositionInRoom = "DanishTrolley 12, 13, 14",
+                            ProductId = 1,
+                            ProductName = "Shitake",
+                            QuantitificationUnit = "Kg",
+                            RecoltedQuantitie = 24.5,
+                            RoomId = 1,
+                            StartDate = new DateTime(2022, 5, 18, 0, 10, 18, 705, DateTimeKind.Local).AddTicks(7038)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EstimatedQuantitie = 50.0,
+                            IsGrowing = true,
+                            MaxEstimation = 60.0,
+                            MinEstimation = 40.0,
+                            PositionInRoom = "DanishTrolley 15, 16, 17",
+                            ProductId = 1,
+                            ProductName = "Shitake",
+                            QuantitificationUnit = "Kg",
+                            RecoltedQuantitie = 0.0,
+                            RoomId = 1,
+                            StartDate = new DateTime(2022, 5, 23, 0, 10, 18, 706, DateTimeKind.Local).AddTicks(361)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EstimatedQuantitie = 15.0,
+                            IsGrowing = true,
+                            MaxEstimation = 20.0,
+                            MinEstimation = 10.0,
+                            PositionInRoom = "In the middle of the central column",
+                            ProductId = 2,
+                            ProductName = "Maitake",
+                            QuantitificationUnit = "Kg",
+                            RecoltedQuantitie = 0.0,
+                            RoomId = 3,
+                            StartDate = new DateTime(2022, 5, 23, 0, 10, 18, 706, DateTimeKind.Local).AddTicks(465)
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.Order", b =>
@@ -267,6 +344,9 @@ namespace ProductionManager_EndProject.Migrations
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ClientId1")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -291,7 +371,7 @@ namespace ProductionManager_EndProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId1");
 
                     b.HasIndex("ProductionId");
 
@@ -404,9 +484,6 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("ProductionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductionPrevision")
-                        .HasColumnType("int");
-
                     b.Property<int>("RealStock")
                         .HasColumnType("int");
 
@@ -415,6 +492,30 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("ProductionId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            NotOrderedStock = 45,
+                            OrderedStock = 15,
+                            Price = 18,
+                            PriceFor = "kilogram",
+                            ProductName = "Shitake",
+                            ProductionId = 1,
+                            RealStock = 60
+                        },
+                        new
+                        {
+                            Id = 2,
+                            NotOrderedStock = 6,
+                            OrderedStock = 56,
+                            Price = 26,
+                            PriceFor = "kilogram",
+                            ProductName = "Maitake",
+                            ProductionId = 1,
+                            RealStock = 62
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.ProductOrder", b =>
@@ -476,15 +577,32 @@ namespace ProductionManager_EndProject.Migrations
 
                     b.Property<string>("Street")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ZIP")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductionName")
+                        .IsUnique();
+
                     b.ToTable("Productions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "SmartFood@smartfood.com",
+                            Number = 10,
+                            PhoneNumber = "02/153.154",
+                            ProductionName = "SmartFood-Brusels",
+                            Street = "High Street",
+                            ZIP = 1000
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.Room", b =>
@@ -507,6 +625,26 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("ProductionId");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ProductionId = 1,
+                            RoomName = "Room 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ProductionId = 1,
+                            RoomName = "Room 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ProductionId = 1,
+                            RoomName = "Room 3"
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.User", b =>
@@ -616,6 +754,58 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("ProductionId");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            BirthDay = new DateTime(2022, 5, 23, 0, 10, 18, 700, DateTimeKind.Local).AddTicks(3115),
+                            City = "Bruxelles",
+                            ConcurrencyStamp = "ebb3f35a-a72e-4ff3-b5d6-6b424b8371ea",
+                            Country = "Belgium",
+                            Email = "max@intec.be",
+                            EmailConfirmed = true,
+                            FirstName = "Maximilian",
+                            LastName = "Poniatowski",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MAX@INTEC.BE",
+                            NormalizedUserName = "MAX",
+                            Number = 5,
+                            PasswordHash = "AQAAAAEAACcQAAAAECR13p/s4tMqy3/dtrf8nbGyci6/FTnR6WzYuKkmK46q1Zv2jtmT7i4F1KElnLASGQ==",
+                            PhoneNumber = "02/789.321",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6b272eb2-819b-473f-8947-2b8bb1463e90",
+                            Street = "Nieuwe Straat",
+                            TwoFactorEnabled = false,
+                            UserName = "max",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            BirthDay = new DateTime(2022, 5, 23, 0, 10, 18, 704, DateTimeKind.Local).AddTicks(7934),
+                            City = "Bruxelles",
+                            ConcurrencyStamp = "4de384f5-a43b-45ed-8e3a-8bf82291de26",
+                            Country = "Belgium",
+                            Email = "admin@intec.be",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "The first one",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@INTEC.BE",
+                            NormalizedUserName = "ADMIN",
+                            Number = 5,
+                            PasswordHash = "AQAAAAEAACcQAAAAECR13p/s4tMqy3/dtrf8nbGyci6/FTnR6WzYuKkmK46q1Zv2jtmT7i4F1KElnLASGQ==",
+                            PhoneNumber = "02/189.181",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2a602e1f-93f2-4434-8a53-a729f8d98293",
+                            Street = "Nieuwe Straat",
+                            TwoFactorEnabled = false,
+                            UserName = "admin",
+                            ZIP = 1000
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -669,17 +859,6 @@ namespace ProductionManager_EndProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductionLibrary.Client", b =>
-                {
-                    b.HasOne("ProductionLibrary.Production", "Production")
-                        .WithMany("Clients")
-                        .HasForeignKey("ProductionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Production");
-                });
-
             modelBuilder.Entity("ProductionLibrary.Lot", b =>
                 {
                     b.HasOne("ProductionLibrary.Product", "Product")
@@ -703,9 +882,7 @@ namespace ProductionManager_EndProject.Migrations
                 {
                     b.HasOne("ProductionLibrary.Client", "Client")
                         .WithMany("ClientOrders")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId1");
 
                     b.HasOne("ProductionLibrary.Production", "Production")
                         .WithMany("Orders")
@@ -797,7 +974,7 @@ namespace ProductionManager_EndProject.Migrations
             modelBuilder.Entity("ProductionLibrary.Room", b =>
                 {
                     b.HasOne("ProductionLibrary.Production", "Production")
-                        .WithMany()
+                        .WithMany("Rooms")
                         .HasForeignKey("ProductionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -838,13 +1015,13 @@ namespace ProductionManager_EndProject.Migrations
 
             modelBuilder.Entity("ProductionLibrary.Production", b =>
                 {
-                    b.Navigation("Clients");
-
                     b.Navigation("Orders");
 
                     b.Navigation("ProdTasks");
 
                     b.Navigation("Products");
+
+                    b.Navigation("Rooms");
 
                     b.Navigation("Users");
                 });

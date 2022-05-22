@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProductionLibrary;
 using ProductionManager_EndProject.Data;
+using ProductionManager_EndProject.Models;
 using ProductionManager_EndProject.Repositories;
 
 namespace ProductionManager_EndProject.Controllers
 {
-    [Authorize]
+
     public class ProductionController : Controller
     {
         private readonly ProductionRepository _productionRepository;
@@ -24,6 +25,22 @@ namespace ProductionManager_EndProject.Controllers
         {
             _productionRepository = productionRepository;
             _userManager = userManager;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Selection()
+        {
+            ProductionSelectionOverview vm = new ProductionSelectionOverview();
+            vm.AvaiableProductions = _productionRepository.GetAll();
+            return View(vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MainPage(int id)
+        {
+            Production activeProd = await _productionRepository.GetByIdInclusive(id);
+            //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
+            return View(activeProd);
         }
 
         [HttpGet]
@@ -55,15 +72,19 @@ namespace ProductionManager_EndProject.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,PhoneNumber,ProductionName,Country,City,ZIP,Street,Number")] Production production)
+        public async Task<IActionResult> Create(Production production)
         {
             if (ModelState.IsValid)
             {
-                await _productionRepository.Create(production);
-                return RedirectToAction("Index");
+                var result = await _productionRepository.Create(production);
+                if (result != null)
+                {
+                    return RedirectToAction("Selection");
+                }
+                ModelState.AddModelError(nameof(production.ProductionName), "This name is already used !");
             }
             return View(production);
         }
@@ -84,34 +105,29 @@ namespace ProductionManager_EndProject.Controllers
             return View(production);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Production production)
         {
-            if (id != production.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
                     await _productionRepository.Update(production);
                 }
-                catch 
+                catch
                 {
-                    
-                   throw;
-                    
+
+                    throw;
+
                 }
                 return RedirectToAction("Index");
             }
             return View(production);
         }
 
-        
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

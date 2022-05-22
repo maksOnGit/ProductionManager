@@ -56,6 +56,16 @@ namespace ProductionManager_EndProject.Repositories
             return null;
         }
 
+        public virtual async Task<T> DeleteById(string id)
+        {
+            var entity = await GetById(id);
+            if (entity != null)
+            {
+                return await Delete(entity);
+            }
+            return null;
+        }
+
         public virtual IQueryable<T> GetAll()
         {
             //AsNoTracking will give readonly resultats.

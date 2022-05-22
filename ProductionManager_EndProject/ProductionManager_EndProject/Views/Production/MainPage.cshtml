@@ -1,0 +1,30 @@
+﻿@using ProductionLibrary
+@*
+    
+*@
+@model Production
+
+@Model.ProductionName
+
+@if (Model.Rooms.Count() == 0)
+{
+    <div>No Rooms</div>
+}
+else
+{
+    foreach (var Room in Model.Rooms)
+    {
+        <div>@Room.RoomName</div>
+        if (Room.Lots.Count() == 0)
+        {
+            <div>This Rooms is Empty</div>
+        }
+        else
+        {
+            foreach (var lot in Room.Lots)
+            {
+                <div>@lot.Id</div>
+            }
+        }
+    }
+}

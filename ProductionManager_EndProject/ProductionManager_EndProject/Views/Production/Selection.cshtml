@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Selection";
+    int Counter = 1;
+}
+@model ProductionSelectionOverview;
+
+@if (Model.AvaiableProductions.Count() == 0)
+{
+    <div class="card text-center">
+        <div class="card-header">
+            Productions Not Detected
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">I see that u don't have any production yet.</h5>
+            <p class="card-title">Let's start by creating one !</p>
+            <a asp-controller="Production" asp-action="Create" class="btn btn-primary">Start a new Production</a>
+        </div>
+    </div>
+    <h1></h1>
+}
+else
+{
+    foreach (var production in Model.AvaiableProductions)
+    {
+        <div class="card text-center">
+            <div class="card-header">
+                Production n°@Counter
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@production.ProductionName</h5>
+                <p class="card-title">@production.City, @production.Country, @production.Street @production.Number</p>
+                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@production.Id" class="btn btn-primary">Select Production</a>
+            </div>
+        </div>
+        Counter++;
+    }
+}

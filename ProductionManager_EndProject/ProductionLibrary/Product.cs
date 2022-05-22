@@ -17,7 +17,6 @@ namespace ProductionLibrary
         public int RealStock { get; set; }
         public int OrderedStock { get; set; }
         public int NotOrderedStock { get; set; }
-        public int? ProductionPrevision { get; set; }
 
         //Navigation Property
 

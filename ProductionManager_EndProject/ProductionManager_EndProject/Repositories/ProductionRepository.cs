@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductionLibrary;
 using ProductionManager_EndProject.Data;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,12 @@ namespace ProductionManager_EndProject.Repositories
         {
         }
 
-        public override async Task<Production> GetById<X>(X id)
+        public async Task<Production> GetByIdInclusive<T>(T id)
+        {
+            return await _dbContext.Productions.Include(x => x.Rooms).ThenInclude(x => x.Lots).Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+        }
+
+        public override async Task<Production> GetById<T>(T id)
         {
             return await _dbContext.Productions.Where(c => c.Id.Equals(id)).FirstOrDefaultAsync();
         }
