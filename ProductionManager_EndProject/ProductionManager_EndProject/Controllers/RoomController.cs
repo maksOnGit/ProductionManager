@@ -19,19 +19,13 @@ namespace ProductionManager_EndProject.Controllers
             _roomRepository = roomRepository;
             _userManager = userManager;
         }
-        [HttpGet]
-        public async Task<ActionResult> Details(int id)
-        {
-            return View();
-        }
+
 
         [HttpGet]
-        public async Task<ActionResult> Create(int productionId) // id = productionId
+        public async Task<IActionResult> Create(int productionId) // id = productionId
         {
             Room room = new Room();
             room.ProductionId = productionId;
-            //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
-
 
             return View(room);
         }
@@ -39,7 +33,7 @@ namespace ProductionManager_EndProject.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Room room)
+        public async Task<IActionResult> Create(Room room)
         {
 
             if (ModelState.IsValid)
@@ -47,18 +41,32 @@ namespace ProductionManager_EndProject.Controllers
                 var result = await _roomRepository.Create(room);
                 if (result != null)
                 {
-                    return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("MainPage", "Production", new { id = room.ProductionId});
                 }
+                ModelState.AddModelError(nameof(room.RoomName), "U already have a unit with this name");
             }
             return View(room);
         }
 
+
+        
+        [HttpGet]    
+        public async Task<IActionResult> Delete(int id, int prodId)
+        {
+            DeleteRoomOverviewModel vm = new DeleteRoomOverviewModel();
+            vm.RoomId = id;
+            vm.ProductionId = prodId;
+            return View(vm);
+        }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeletePost(DeleteRoomOverviewModel vm)
         {
-            return null;
+            var target = await _roomRepository.DeleteById(vm.RoomId);
+            return RedirectToAction("MainPage", "Production", new {id = target.ProductionId});
+
         }
     }
 }

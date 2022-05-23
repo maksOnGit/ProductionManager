@@ -161,7 +161,10 @@ namespace ProductionManager_EndProject.Data
                 .Property(r => r.RoomName)
                 .HasMaxLength(50)
                 .IsRequired();
-            
+            builder.Entity<Room>()
+                .HasIndex(p => p.RoomName)
+                .IsUnique();
+
             //ProductOrder
             builder.Entity<ProductOrder>()
                 .HasOne(l => l.Product)

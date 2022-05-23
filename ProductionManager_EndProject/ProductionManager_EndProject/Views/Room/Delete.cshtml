@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DeleteRoomOverviewModel;
+
+
+<div class="card">
+    <h5 class="card-header">Delete Confirmation Required</h5>
+    <div class="card-body">
+        <p>Are you sure that you want to delete this room ?</p>
+    </div>
+    <div class="card-footer">
+       @* <a asp-controller="Room" asp-action="DeletePost" asp-route-id="@Model.RoomId" class="btn btn-primary">Yes</a>
+        <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId" class="btn btn-secondary">No</a>*@
+
+    <form asp-controller="Room" asp-action="DeletePost">
+        <input type="hidden" asp-for="RoomId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId" class="btn btn-secondary">No</a>
+    </form>
+
+    </div>
+</div>

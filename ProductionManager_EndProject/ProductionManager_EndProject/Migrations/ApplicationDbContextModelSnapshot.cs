@@ -299,7 +299,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 24.5,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 18, 0, 10, 18, 705, DateTimeKind.Local).AddTicks(7038)
+                            StartDate = new DateTime(2022, 5, 18, 21, 28, 45, 311, DateTimeKind.Local).AddTicks(2465)
                         },
                         new
                         {
@@ -314,7 +314,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 23, 0, 10, 18, 706, DateTimeKind.Local).AddTicks(361)
+                            StartDate = new DateTime(2022, 5, 23, 21, 28, 45, 311, DateTimeKind.Local).AddTicks(6026)
                         },
                         new
                         {
@@ -329,7 +329,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 3,
-                            StartDate = new DateTime(2022, 5, 23, 0, 10, 18, 706, DateTimeKind.Local).AddTicks(465)
+                            StartDate = new DateTime(2022, 5, 23, 21, 28, 45, 311, DateTimeKind.Local).AddTicks(6048)
                         });
                 });
 
@@ -622,6 +622,9 @@ namespace ProductionManager_EndProject.Migrations
 
                     b.HasIndex("ProductionId");
 
+                    b.HasIndex("RoomName")
+                        .IsUnique();
+
                     b.ToTable("Rooms");
 
                     b.HasData(
@@ -758,9 +761,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 23, 0, 10, 18, 700, DateTimeKind.Local).AddTicks(3115),
+                            BirthDay = new DateTime(2022, 5, 23, 21, 28, 45, 293, DateTimeKind.Local).AddTicks(6117),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "ebb3f35a-a72e-4ff3-b5d6-6b424b8371ea",
+                            ConcurrencyStamp = "3009ee62-14ad-4214-b5f8-5eefb719ea9b",
                             Country = "Belgium",
                             Email = "max@intec.be",
                             EmailConfirmed = true,
@@ -770,10 +773,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "MAX@INTEC.BE",
                             NormalizedUserName = "MAX",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAECR13p/s4tMqy3/dtrf8nbGyci6/FTnR6WzYuKkmK46q1Zv2jtmT7i4F1KElnLASGQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHScFWpMe/tRyGdLpMthOtCNuYBgyEhsUz0x8ztIeVIKo8DX8oHZrKtYkEwkVlRmkw==",
                             PhoneNumber = "02/789.321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6b272eb2-819b-473f-8947-2b8bb1463e90",
+                            SecurityStamp = "9d4d65f4-bc9d-412e-a1dc-86f23813b6ac",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "max",
@@ -783,9 +786,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 23, 0, 10, 18, 704, DateTimeKind.Local).AddTicks(7934),
+                            BirthDay = new DateTime(2022, 5, 23, 21, 28, 45, 310, DateTimeKind.Local).AddTicks(3172),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "4de384f5-a43b-45ed-8e3a-8bf82291de26",
+                            ConcurrencyStamp = "886a706b-70ad-4afb-a3f1-10bf1b577502",
                             Country = "Belgium",
                             Email = "admin@intec.be",
                             EmailConfirmed = true,
@@ -795,10 +798,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "ADMIN@INTEC.BE",
                             NormalizedUserName = "ADMIN",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAECR13p/s4tMqy3/dtrf8nbGyci6/FTnR6WzYuKkmK46q1Zv2jtmT7i4F1KElnLASGQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHScFWpMe/tRyGdLpMthOtCNuYBgyEhsUz0x8ztIeVIKo8DX8oHZrKtYkEwkVlRmkw==",
                             PhoneNumber = "02/189.181",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2a602e1f-93f2-4434-8a53-a729f8d98293",
+                            SecurityStamp = "e24308a9-f470-4282-a51f-9679315fa62f",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "admin",
