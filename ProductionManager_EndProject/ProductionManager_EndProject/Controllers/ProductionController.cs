@@ -67,7 +67,7 @@ namespace ProductionManager_EndProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
