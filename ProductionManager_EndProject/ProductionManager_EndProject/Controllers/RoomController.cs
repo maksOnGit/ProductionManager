@@ -22,7 +22,7 @@ namespace ProductionManager_EndProject.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Create(int productionId) // id = productionId
+        public async Task<IActionResult> Create(int productionId) 
         {
             Room room = new Room();
             room.ProductionId = productionId;
