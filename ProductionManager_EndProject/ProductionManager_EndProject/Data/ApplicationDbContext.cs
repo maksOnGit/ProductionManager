@@ -157,13 +157,17 @@ namespace ProductionManager_EndProject.Data
                 .IsRequired();
 
             //Room
-            builder.Entity<Room>()
-                .Property(r => r.RoomName)
+            var room = builder.Entity<Room>();
+            room.Property(r => r.RoomName)
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Entity<Room>()
-                .HasIndex(p => p.RoomName)
+            room.HasIndex(p => p.RoomName)
                 .IsUnique();
+            room.HasMany(r => r.Lots)
+                .WithOne(l => l.Room)
+                .HasForeignKey(r => r.RoomId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
 
             //ProductOrder
             builder.Entity<ProductOrder>()

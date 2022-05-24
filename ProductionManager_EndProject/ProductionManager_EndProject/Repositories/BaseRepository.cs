@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductionLibrary.Interfaces;
 using ProductionManager_EndProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace ProductionManager_EndProject.Repositories
             {
                 await _dbContext.SaveChangesAsync();
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }

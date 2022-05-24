@@ -14,7 +14,7 @@ namespace ProductionManager_EndProject.Repositories
 
         public override async Task<Room> GetById<X>(X id)
         {
-            return await _dbContext.Rooms.Where(r => r.Id.Equals(id)).FirstOrDefaultAsync();
+            return await _dbContext.Rooms.Include(r => r.Lots).Where(r => r.Id.Equals(id)).FirstOrDefaultAsync();
         }
 
     }
