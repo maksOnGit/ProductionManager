@@ -51,7 +51,7 @@ namespace ProductionManager_EndProject.Controllers
 
 
         
-        [HttpGet]    
+        [HttpGet]
         public async Task<IActionResult> Delete(int id, int prodId)
         {
             DeleteRoomOverviewModel vm = new DeleteRoomOverviewModel();
@@ -60,6 +60,7 @@ namespace ProductionManager_EndProject.Controllers
             return View(vm);
         }
         
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeletePost(DeleteRoomOverviewModel vm)

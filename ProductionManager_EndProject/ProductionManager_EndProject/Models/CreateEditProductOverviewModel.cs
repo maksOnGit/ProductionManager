@@ -12,13 +12,11 @@ namespace ProductionManager_EndProject.Models
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
         [Required]
-        public int Price { get; set; }
+        public double Price { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Measurement unit (Kilogram, gram, meter, unit, ...")]
         public string PriceFor { get; set; }
-        [Required]
-        public int ProductionId { get; set; }
         [Required]
         public int RealStock { get; set; }
         [Required]
@@ -29,7 +27,6 @@ namespace ProductionManager_EndProject.Models
 
         //Navigation Property
 
-        public Production Production { get; set; }
         public IEnumerable<ProductOrder> ProductOrders { get; set; }
         public IEnumerable<Lot> Lots { get; set; }
     }

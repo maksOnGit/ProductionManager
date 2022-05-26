@@ -5,52 +5,55 @@
 
 
 <h1>@Html.Raw((Model == null || Model.Id == 0) ? "Create" : "Edit")</h1>
-<form asp-controller="Country" asp-action="CreateEditCountry" method="post">
-    @if(Model != null)
-    {
-        <div class="form-group">
-            <input type="hidden" asp-for="Id">
-        </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Product" asp-action="CreateEdit" method="post">
+            @if (Model != null)
+            {
+                <div class="form-group">
+                    <input type="hidden" asp-for="Id">
+                </div>
 
-    }
-    <div class="form-group" >
-        <input type="hidden" asp-for="ProductionId" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label asp-for="ProductName"></label>
-        <input asp-for="ProductName" class="form-control"/>
-        <span asp-validation-for="ProductName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control"/>
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PriceFor"></label>
-        <input asp-for="PriceFor" class="form-control"/>
-        <span asp-validation-for="PriceFor" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="RealStock"></label>
-        <input asp-for="RealStock" class="form-control"/>
-        <span asp-validation-for="RealStock" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="OrderedStock"></label>
-        <input asp-for="OrderedStock" class="form-control"/>
-        <span asp-validation-for="OrderedStock" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="NotOrderedStock"></label>
-        <input asp-for="NotOrderedStock" class="form-control"/>
-        <span asp-validation-for="NotOrderedStock" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ImageUrl"></label>
-        <input asp-for="ImageUrl" class="form-control"/>
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </div>
+            }
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceFor"></label>
+                <input asp-for="PriceFor" class="form-control" />
+                <span asp-validation-for="PriceFor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RealStock"></label>
+                <input asp-for="RealStock" class="form-control" />
+                <span asp-validation-for="RealStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderedStock"></label>
+                <input asp-for="OrderedStock" class="form-control" />
+                <span asp-validation-for="OrderedStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotOrderedStock"></label>
+                <input asp-for="NotOrderedStock" class="form-control" />
+                <span asp-validation-for="NotOrderedStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
 
-    <button type="submit" class="btn btn-primary">@Html.Raw((Model == null || Model.Id == 0) ? "Create" : "Edit")</button>
-</form>
+            <button type="submit" class="btn btn-primary">@Html.Raw((Model == null || Model.Id == 0) ? "Create" : "Edit")</button>
+            <a asp-action="Index" class="btn btn-primary">Cancel</a>
+        </form>
+
+    </div>
+</div>

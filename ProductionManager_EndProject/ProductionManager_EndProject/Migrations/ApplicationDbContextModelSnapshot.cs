@@ -299,7 +299,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 24.5,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 19, 13, 33, 59, 437, DateTimeKind.Local).AddTicks(6379)
+                            StartDate = new DateTime(2022, 5, 21, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(3730)
                         },
                         new
                         {
@@ -314,7 +314,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 24, 13, 33, 59, 437, DateTimeKind.Local).AddTicks(9653)
+                            StartDate = new DateTime(2022, 5, 26, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(6935)
                         },
                         new
                         {
@@ -329,7 +329,7 @@ namespace ProductionManager_EndProject.Migrations
                             QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 3,
-                            StartDate = new DateTime(2022, 5, 24, 13, 33, 59, 437, DateTimeKind.Local).AddTicks(9678)
+                            StartDate = new DateTime(2022, 5, 26, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(6956)
                         });
                 });
 
@@ -340,10 +340,7 @@ namespace ProductionManager_EndProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClientId1")
+                    b.Property<string>("ClientId")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreationDate")
@@ -352,12 +349,9 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<DateTime>("DeliveryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Price")
+                    b.Property<double>("Price")
                         .HasMaxLength(6)
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductionId")
-                        .HasColumnType("int");
+                        .HasColumnType("float");
 
                     b.Property<string>("Reference")
                         .HasMaxLength(50)
@@ -369,9 +363,7 @@ namespace ProductionManager_EndProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId1");
-
-                    b.HasIndex("ProductionId");
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("UserId");
 
@@ -466,8 +458,8 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("OrderedStock")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("PriceFor")
                         .IsRequired()
@@ -479,15 +471,10 @@ namespace ProductionManager_EndProject.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ProductionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RealStock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductionId");
 
                     b.ToTable("Products");
 
@@ -497,10 +484,9 @@ namespace ProductionManager_EndProject.Migrations
                             Id = 1,
                             NotOrderedStock = 45,
                             OrderedStock = 15,
-                            Price = 18,
+                            Price = 18.0,
                             PriceFor = "kilogram",
                             ProductName = "Shitake",
-                            ProductionId = 1,
                             RealStock = 60
                         },
                         new
@@ -508,10 +494,9 @@ namespace ProductionManager_EndProject.Migrations
                             Id = 2,
                             NotOrderedStock = 6,
                             OrderedStock = 56,
-                            Price = 26,
+                            Price = 26.0,
                             PriceFor = "kilogram",
                             ProductName = "Maitake",
-                            ProductionId = 1,
                             RealStock = 62
                         });
                 });
@@ -720,9 +705,6 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProductionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -752,8 +734,6 @@ namespace ProductionManager_EndProject.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("ProductionId");
-
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
@@ -761,9 +741,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 24, 13, 33, 59, 434, DateTimeKind.Local).AddTicks(1339),
+                            BirthDay = new DateTime(2022, 5, 26, 21, 58, 15, 370, DateTimeKind.Local).AddTicks(5398),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "abd429d2-d244-484c-8abf-8170e41cf8e6",
+                            ConcurrencyStamp = "3b6cc666-459c-4591-8bf8-d17122d23052",
                             Country = "Belgium",
                             Email = "max@intec.be",
                             EmailConfirmed = true,
@@ -773,10 +753,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "MAX@INTEC.BE",
                             NormalizedUserName = "MAX",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEBTicR9cCfiynJLRZAnqZieDbxF9ZBhGsp6ZnlWyoc7sWUiadqhRCv1upOMXQe+9eA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPZB2c5LD1et03QGdeGtjP99Y8cSaguVKT7FgXq7lfQ2IBz8S/DH4pEjRU2ryp5l8A==",
                             PhoneNumber = "02/789.321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1fe347d-43f9-4b43-a612-d9320aa57f8e",
+                            SecurityStamp = "da69075d-5065-45bf-a493-79e3b75f8b51",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "max",
@@ -786,9 +766,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 24, 13, 33, 59, 436, DateTimeKind.Local).AddTicks(7368),
+                            BirthDay = new DateTime(2022, 5, 26, 21, 58, 15, 374, DateTimeKind.Local).AddTicks(5546),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "05e9d0fa-22de-444e-a20b-3c919d555929",
+                            ConcurrencyStamp = "43530847-6e70-4bd1-a9d7-2c17c8fd6411",
                             Country = "Belgium",
                             Email = "admin@intec.be",
                             EmailConfirmed = true,
@@ -798,10 +778,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "ADMIN@INTEC.BE",
                             NormalizedUserName = "ADMIN",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEBTicR9cCfiynJLRZAnqZieDbxF9ZBhGsp6ZnlWyoc7sWUiadqhRCv1upOMXQe+9eA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPZB2c5LD1et03QGdeGtjP99Y8cSaguVKT7FgXq7lfQ2IBz8S/DH4pEjRU2ryp5l8A==",
                             PhoneNumber = "02/189.181",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d84f0ef4-64d5-4957-bb1e-988c68f4fff5",
+                            SecurityStamp = "6be6cd10-42f5-40f5-a3ac-76ac7aeece52",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "admin",
@@ -882,14 +862,8 @@ namespace ProductionManager_EndProject.Migrations
             modelBuilder.Entity("ProductionLibrary.Order", b =>
                 {
                     b.HasOne("ProductionLibrary.Client", "Client")
-                        .WithMany("ClientOrders")
-                        .HasForeignKey("ClientId1");
-
-                    b.HasOne("ProductionLibrary.Production", "Production")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("ProductionLibrary.User", "User")
                         .WithMany("Orders")
@@ -898,8 +872,6 @@ namespace ProductionManager_EndProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
-
-                    b.Navigation("Production");
 
                     b.Navigation("User");
                 });
@@ -942,17 +914,6 @@ namespace ProductionManager_EndProject.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ProductionLibrary.Product", b =>
-                {
-                    b.HasOne("ProductionLibrary.Production", "Production")
-                        .WithMany("Products")
-                        .HasForeignKey("ProductionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Production");
-                });
-
             modelBuilder.Entity("ProductionLibrary.ProductOrder", b =>
                 {
                     b.HasOne("ProductionLibrary.Order", "Order")
@@ -983,18 +944,9 @@ namespace ProductionManager_EndProject.Migrations
                     b.Navigation("Production");
                 });
 
-            modelBuilder.Entity("ProductionLibrary.User", b =>
-                {
-                    b.HasOne("ProductionLibrary.Production", "Production")
-                        .WithMany("Users")
-                        .HasForeignKey("ProductionId");
-
-                    b.Navigation("Production");
-                });
-
             modelBuilder.Entity("ProductionLibrary.Client", b =>
                 {
-                    b.Navigation("ClientOrders");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("ProductionLibrary.Order", b =>
@@ -1016,15 +968,9 @@ namespace ProductionManager_EndProject.Migrations
 
             modelBuilder.Entity("ProductionLibrary.Production", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("ProdTasks");
 
-                    b.Navigation("Products");
-
                     b.Navigation("Rooms");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("ProductionLibrary.Room", b =>

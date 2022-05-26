@@ -33,10 +33,6 @@ namespace ProductionManager_EndProject.Data
             //Order
             var order = builder.Entity<Order>();
 
-            order.HasOne(o => o.Production)
-                .WithMany(p => p.Orders)
-                .HasForeignKey(o => o.ProductionId)
-                .OnDelete(DeleteBehavior.NoAction);
             order.HasKey(o => o.Id);
             order.Property(o => o.UserId)
                 .IsRequired();
@@ -268,7 +264,6 @@ namespace ProductionManager_EndProject.Data
                             NotOrderedStock = 45,
                             OrderedStock = 15,
                             RealStock = 60,
-                            ProductionId = 1,
                             },
                 new Product { Id = 2,
                             ProductName = "Maitake",
@@ -277,7 +272,6 @@ namespace ProductionManager_EndProject.Data
                             NotOrderedStock = 6,
                             OrderedStock = 56,
                             RealStock = 62,
-                            ProductionId = 1,
                             
                             }
             };

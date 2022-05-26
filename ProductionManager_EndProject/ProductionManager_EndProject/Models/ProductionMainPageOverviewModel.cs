@@ -36,10 +36,7 @@ namespace ProductionManager_EndProject.Models
         public int Number { get; set; }
 
         //Navigation Properties
-        public IEnumerable<User> Users { get; set; }
         public IEnumerable<ProdTask> ProdTasks { get; set; }
-        public IEnumerable<Order> Orders { get; set; }
-        public IEnumerable<Product> Products { get; set; }
         public IEnumerable<Room> Rooms { get; set; }
 
 

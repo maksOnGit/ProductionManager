@@ -40,7 +40,7 @@ namespace ProductionLibrary
         public string ImageUrl { get; set; }
 
         //Navigation Properties
-        public IEnumerable<Order> ClientOrders { get; set; }
+        public IEnumerable<Order> Orders { get; set; }
 
     }
 }

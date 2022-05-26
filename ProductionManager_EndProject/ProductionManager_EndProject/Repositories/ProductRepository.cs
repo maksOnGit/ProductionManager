@@ -1,5 +1,7 @@
-﻿using ProductionLibrary;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductionLibrary;
 using ProductionManager_EndProject.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductionManager_EndProject.Repositories
@@ -10,9 +12,9 @@ namespace ProductionManager_EndProject.Repositories
         {
         }
 
-        public override Task<Product> GetById<X>(X id)
+        public override async Task<Product> GetById<X>(X id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Products.Include(p => p.ProductOrders).Include(p => p.Lots).Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
         }
     }
 }

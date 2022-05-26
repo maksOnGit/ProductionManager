@@ -22,7 +22,6 @@ namespace ProductionLibrary
         //Navigation Properties
         public IEnumerable<ProdTaskUser> ProdTaskUsers { get; set; }
         public IEnumerable<Order> Orders { get; set; }
-        public Production Production { get; set; }
 
 
     }
