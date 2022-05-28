@@ -16,5 +16,16 @@ namespace ProductionManager_EndProject.Repositories
         {
             return await _dbContext.Products.Include(p => p.ProductOrders).Include(p => p.Lots).Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
         }
+
+        public async Task<string> GetNameById(int id)
+        {
+            Product product = await _dbContext.Products.Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
+            return product.ProductName;
+        }
+        public async Task<string> GetUnitTypeById(int id)
+        {
+            Product product = await _dbContext.Products.Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
+            return product.PriceFor;
+        }
     }
 }

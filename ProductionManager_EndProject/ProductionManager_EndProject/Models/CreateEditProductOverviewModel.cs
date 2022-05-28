@@ -12,7 +12,7 @@ namespace ProductionManager_EndProject.Models
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
         [Required]
-        public double Price { get; set; }
+        public double? Price { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Measurement unit (Kilogram, gram, meter, unit, ...")]

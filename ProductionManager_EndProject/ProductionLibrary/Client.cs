@@ -10,7 +10,6 @@ namespace ProductionLibrary
     public class Client
     {
         //public int Id { get; set; }
-        [Key]
         [Required]
         [StringLength(50)]
         [Display(Name = "Client Name")]

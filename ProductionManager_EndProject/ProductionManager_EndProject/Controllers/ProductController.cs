@@ -65,7 +65,7 @@ namespace ProductionManager_EndProject.Controllers
                                             RealStock = model.RealStock,
                                             OrderedStock = model.OrderedStock,
                                             NotOrderedStock = model.NotOrderedStock,
-                                            Price = model.Price
+                                            Price = (double)model.Price
                                            };
             if (model.Id == 0)
             {

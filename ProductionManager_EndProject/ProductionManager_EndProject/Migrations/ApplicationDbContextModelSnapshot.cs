@@ -241,23 +241,17 @@ namespace ProductionManager_EndProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("EstimatedQuantitie")
+                    b.Property<double>("EstimatedQuantitie")
                         .HasColumnType("float");
 
                     b.Property<bool?>("IsGrowing")
                         .HasColumnType("bit");
-
-                    b.Property<double?>("MaxEstimation")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("MinEstimation")
-                        .HasColumnType("float");
-
-                    b.Property<string>("PositionInRoom")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -265,17 +259,20 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QuantitificationUnit")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("RecoltedQuantitie")
+                    b.Property<double>("RecoltedQuantitie")
                         .HasColumnType("float");
+
+                    b.Property<string>("Reference")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UnitType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -289,47 +286,38 @@ namespace ProductionManager_EndProject.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "DanishTrolley 12, 13, 14",
                             EstimatedQuantitie = 50.0,
                             IsGrowing = true,
-                            MaxEstimation = 60.0,
-                            MinEstimation = 40.0,
-                            PositionInRoom = "DanishTrolley 12, 13, 14",
                             ProductId = 1,
                             ProductName = "Shitake",
-                            QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 24.5,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 21, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(3730)
+                            StartDate = new DateTime(2022, 5, 23, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(4993)
                         },
                         new
                         {
                             Id = 2,
+                            Description = "DanishTrolley 15, 16, 17",
                             EstimatedQuantitie = 50.0,
                             IsGrowing = true,
-                            MaxEstimation = 60.0,
-                            MinEstimation = 40.0,
-                            PositionInRoom = "DanishTrolley 15, 16, 17",
                             ProductId = 1,
                             ProductName = "Shitake",
-                            QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 26, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(6935)
+                            StartDate = new DateTime(2022, 5, 28, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(6506)
                         },
                         new
                         {
                             Id = 3,
+                            Description = "In the middle of the central column",
                             EstimatedQuantitie = 15.0,
                             IsGrowing = true,
-                            MaxEstimation = 20.0,
-                            MinEstimation = 10.0,
-                            PositionInRoom = "In the middle of the central column",
                             ProductId = 2,
                             ProductName = "Maitake",
-                            QuantitificationUnit = "Kg",
                             RecoltedQuantitie = 0.0,
                             RoomId = 3,
-                            StartDate = new DateTime(2022, 5, 26, 21, 58, 15, 375, DateTimeKind.Local).AddTicks(6956)
+                            StartDate = new DateTime(2022, 5, 28, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(6524)
                         });
                 });
 
@@ -741,9 +729,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 26, 21, 58, 15, 370, DateTimeKind.Local).AddTicks(5398),
+                            BirthDay = new DateTime(2022, 5, 28, 2, 18, 8, 433, DateTimeKind.Local).AddTicks(2328),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "3b6cc666-459c-4591-8bf8-d17122d23052",
+                            ConcurrencyStamp = "c41ce42b-0df9-4f17-88e7-1ca2d5d39c97",
                             Country = "Belgium",
                             Email = "max@intec.be",
                             EmailConfirmed = true,
@@ -753,10 +741,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "MAX@INTEC.BE",
                             NormalizedUserName = "MAX",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPZB2c5LD1et03QGdeGtjP99Y8cSaguVKT7FgXq7lfQ2IBz8S/DH4pEjRU2ryp5l8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHhoO+6ebZvgYRFRATgmv9OahanI/k1rX0hXl48h7ASR/Yawa4XVftCXnTHSF3c7Lw==",
                             PhoneNumber = "02/789.321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da69075d-5065-45bf-a493-79e3b75f8b51",
+                            SecurityStamp = "6c8922d8-4032-4d4f-a51b-16f1a210b7e6",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "max",
@@ -766,9 +754,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 26, 21, 58, 15, 374, DateTimeKind.Local).AddTicks(5546),
+                            BirthDay = new DateTime(2022, 5, 28, 2, 18, 8, 436, DateTimeKind.Local).AddTicks(6885),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "43530847-6e70-4bd1-a9d7-2c17c8fd6411",
+                            ConcurrencyStamp = "4876a3c8-6f1b-4cf3-8960-f126a4654c73",
                             Country = "Belgium",
                             Email = "admin@intec.be",
                             EmailConfirmed = true,
@@ -778,10 +766,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "ADMIN@INTEC.BE",
                             NormalizedUserName = "ADMIN",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPZB2c5LD1et03QGdeGtjP99Y8cSaguVKT7FgXq7lfQ2IBz8S/DH4pEjRU2ryp5l8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHhoO+6ebZvgYRFRATgmv9OahanI/k1rX0hXl48h7ASR/Yawa4XVftCXnTHSF3c7Lw==",
                             PhoneNumber = "02/189.181",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6be6cd10-42f5-40f5-a3ac-76ac7aeece52",
+                            SecurityStamp = "16881805-f473-4b81-8747-58d57ee45c2f",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "admin",

@@ -1,0 +1,28 @@
+﻿@*
+*@
+@model LotCollectOverviewModel
+
+<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-header">How much have u collected ?</div>
+    <div class="card-body">
+        <form asp-controller="Lot" asp-action="Collect" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="LotId" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ProductionId" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Collected" />
+                <input asp-for="Collected" class="form-control"/>
+                <span asp-validation-for="Collected" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Collected" class="btn btn-primary" />
+                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

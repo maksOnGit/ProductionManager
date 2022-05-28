@@ -1,0 +1,18 @@
+﻿@*
+    
+*@
+@model LotIndexOverviewModel
+
+@foreach (var lot in @Model.Lots)
+{
+
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                @lot.Id
+                <a asp-controller="Lot" asp-action="Delete" asp-route-id="@lot.Id" class="btn btn-primary bg-danger">Delete</a>
+            </li>
+        </ul>
+    </div>
+
+}

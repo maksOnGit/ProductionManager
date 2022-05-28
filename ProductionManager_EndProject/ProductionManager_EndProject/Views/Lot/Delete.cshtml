@@ -1,0 +1,19 @@
+﻿@*
+*@
+@model LotDeleteOverviewModel
+
+<div class="card">
+    <h5 class="card-header bg-danger">Delete Confirmation Required</h5>
+    <div class="card-body">
+        <p>Are you sure that you want to delete this lot ?</p>
+    </div>
+    <div class="card-footer">
+    <form asp-controller="Lot" asp-action="Delete" method="post">
+        <input type="hidden" asp-for="LotId" />
+        <input type="hidden" asp-for="ProductionId" />
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+        <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId" class="btn btn-secondary">No</a>
+    </form>
+
+    </div>
+</div>
