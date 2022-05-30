@@ -293,7 +293,7 @@ namespace ProductionManager_EndProject.Migrations
                             ProductName = "Shitake",
                             RecoltedQuantitie = 24.5,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 23, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(4993)
+                            StartDate = new DateTime(2022, 5, 25, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(1041)
                         },
                         new
                         {
@@ -305,7 +305,7 @@ namespace ProductionManager_EndProject.Migrations
                             ProductName = "Shitake",
                             RecoltedQuantitie = 0.0,
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 28, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(6506)
+                            StartDate = new DateTime(2022, 5, 30, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(2616)
                         },
                         new
                         {
@@ -317,7 +317,7 @@ namespace ProductionManager_EndProject.Migrations
                             ProductName = "Maitake",
                             RecoltedQuantitie = 0.0,
                             RoomId = 3,
-                            StartDate = new DateTime(2022, 5, 28, 2, 18, 8, 437, DateTimeKind.Local).AddTicks(6524)
+                            StartDate = new DateTime(2022, 5, 30, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(2635)
                         });
                 });
 
@@ -368,7 +368,7 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<int>("ProdTaskStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductionId")
+                    b.Property<int?>("ProductionId")
                         .HasColumnType("int");
 
                     b.Property<string>("TaskDescription")
@@ -405,6 +405,23 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProdTaskStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            StatusName = "New"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            StatusName = "Assigned"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            StatusName = "Closed"
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.ProdTaskUser", b =>
@@ -420,6 +437,9 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -729,9 +749,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 28, 2, 18, 8, 433, DateTimeKind.Local).AddTicks(2328),
+                            BirthDay = new DateTime(2022, 5, 30, 0, 36, 6, 132, DateTimeKind.Local).AddTicks(5491),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "c41ce42b-0df9-4f17-88e7-1ca2d5d39c97",
+                            ConcurrencyStamp = "f5772a14-1f82-4545-8193-68bb731ce5f2",
                             Country = "Belgium",
                             Email = "max@intec.be",
                             EmailConfirmed = true,
@@ -741,10 +761,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "MAX@INTEC.BE",
                             NormalizedUserName = "MAX",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEHhoO+6ebZvgYRFRATgmv9OahanI/k1rX0hXl48h7ASR/Yawa4XVftCXnTHSF3c7Lw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGiFR5VZKcVNjpvBjKQWAgXAZnMAPet1wkyHbHfcJkJGU2vfden51vE0GWYwvlBCtQ==",
                             PhoneNumber = "02/789.321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6c8922d8-4032-4d4f-a51b-16f1a210b7e6",
+                            SecurityStamp = "6fd26272-45c2-483f-bc63-fd1e73b341ae",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "max",
@@ -754,9 +774,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 28, 2, 18, 8, 436, DateTimeKind.Local).AddTicks(6885),
+                            BirthDay = new DateTime(2022, 5, 30, 0, 36, 6, 137, DateTimeKind.Local).AddTicks(2568),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "4876a3c8-6f1b-4cf3-8960-f126a4654c73",
+                            ConcurrencyStamp = "2b59af9e-869e-4012-887b-f1a24bb346aa",
                             Country = "Belgium",
                             Email = "admin@intec.be",
                             EmailConfirmed = true,
@@ -766,10 +786,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "ADMIN@INTEC.BE",
                             NormalizedUserName = "ADMIN",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEHhoO+6ebZvgYRFRATgmv9OahanI/k1rX0hXl48h7ASR/Yawa4XVftCXnTHSF3c7Lw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGiFR5VZKcVNjpvBjKQWAgXAZnMAPet1wkyHbHfcJkJGU2vfden51vE0GWYwvlBCtQ==",
                             PhoneNumber = "02/189.181",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "16881805-f473-4b81-8747-58d57ee45c2f",
+                            SecurityStamp = "e13ad11a-be3a-4332-b0c7-d845f2d04e6a",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "admin",
@@ -875,8 +895,7 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasOne("ProductionLibrary.Production", "Production")
                         .WithMany("ProdTasks")
                         .HasForeignKey("ProductionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("ProdTaskStatus");
 

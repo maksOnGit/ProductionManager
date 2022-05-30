@@ -85,3 +85,39 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+
+.bodyground {
+    background-color: lightskyblue;
+}
+
+.inprogress {
+    background-color: deepskyblue;
+}
+
+.done {
+    background-color: orange;
+}
+
+.coltitle {
+    font-weight: bolder;
+    background-color: #007bff;
+    text-shadow: 0px 0px 5px white;
+    border-radius: 5px;
+}
+
+.labels {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.assigned {
+    box-shadow: 0px 0px 5px honeydew;
+    width: fit-content;
+    border-radius: 40%;
+    display: list-item;
+    margin-left: 50px;
+    padding: 2px 7px 6px 7px;
+    background-color: blue;
+    color: honeydew;
+}

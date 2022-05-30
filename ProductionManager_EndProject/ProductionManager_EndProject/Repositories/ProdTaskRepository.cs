@@ -1,5 +1,7 @@
-﻿using ProductionLibrary;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductionLibrary;
 using ProductionManager_EndProject.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductionManager_EndProject.Repositories
@@ -8,11 +10,12 @@ namespace ProductionManager_EndProject.Repositories
     {
         public ProdTaskRepository(ApplicationDbContext context) : base(context)
         {
+
         }
 
         public override Task<ProdTask> GetById<X>(X id)
         {
-            throw new System.NotImplementedException();
+            return _dbContext.ProdTasks.Where(p => p.Id.Equals(id)).FirstOrDefaultAsync();
         }
     }
 }

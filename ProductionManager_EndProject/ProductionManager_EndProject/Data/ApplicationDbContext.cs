@@ -107,6 +107,11 @@ namespace ProductionManager_EndProject.Data
                 .HasMaxLength(500)
                 .IsRequired();
 
+            prodTask.HasOne(p => p.Production)
+                .WithMany(p => p.ProdTasks)
+                .HasForeignKey(p => p.ProductionId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             //ProdTaskStatuses
             builder.Entity<ProdTaskStatus>()
                 .Property(p => p.StatusName)
@@ -120,6 +125,11 @@ namespace ProductionManager_EndProject.Data
 
             //Production  
             var prod = builder.Entity<Production>();
+
+            prod.HasMany(p => p.ProdTasks)
+                .WithOne(p => p.Production)
+                .HasForeignKey(p => p.ProductionId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             prod.HasIndex(p => p.ProductionName)
                 .IsUnique();
@@ -311,8 +321,6 @@ namespace ProductionManager_EndProject.Data
                         RoomId = 3,
                         ProductId = 2
                         }
-
-
             };
 
             //ClientsSeed
@@ -354,6 +362,27 @@ namespace ProductionManager_EndProject.Data
                 },
             };
 
+            //ProdTaskStatuses Seed
+
+            var prodTaskStatuses = new ProdTaskStatus[]
+            {
+                new ProdTaskStatus
+                {
+                    Id = 1,
+                    StatusName = "New"
+                },
+                new ProdTaskStatus
+                {
+                    Id = 2,
+                    StatusName = "Assigned"
+                },
+                new ProdTaskStatus
+                {
+                    Id = 3,
+                    StatusName = "Closed"
+                }
+            }; 
+
 
             builder.Entity<User>().HasData(users);
             builder.Entity<Production>().HasData(productions);
@@ -361,6 +390,7 @@ namespace ProductionManager_EndProject.Data
             builder.Entity<Lot>().HasData(lots);
             builder.Entity<Client>().HasData(clients);
             builder.Entity<Room>().HasData(rooms);
+            builder.Entity<ProdTaskStatus>().HasData(prodTaskStatuses);
 
 
             base.OnModelCreating(builder);  

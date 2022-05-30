@@ -11,6 +11,7 @@ namespace ProductionLibrary
         public int Id { get; set; }
         public string UserId { get; set; }
         public int ProdTaskId { get; set; }
+        public string UserName { get; set; }
 
         //Navigation Properties
         public User User { get; set; }
