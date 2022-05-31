@@ -40,7 +40,12 @@ namespace ProductionManager_EndProject.Controllers
         {
             Production activeProd = await _productionRepository.GetByIdInclusive(id);
             //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
-            return View(activeProd);
+            if (activeProd != null)
+            {
+                return View(activeProd);
+            }
+            return NotFound();
+            
         }
 
         [HttpGet]
@@ -65,6 +70,41 @@ namespace ProductionManager_EndProject.Controllers
 
             return View(production);
         }
+
+        public async Task<IActionResult> Units(int id)
+        {
+            Production activeProd = await _productionRepository.GetByIdWithUnits(id);
+            //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
+            if (activeProd != null)
+            {
+                return View(activeProd);
+            }
+            return NotFound();
+        }
+
+        
+        public async Task<IActionResult> Missions(int id)
+        {
+            Production activeProd = await _productionRepository.GetByIdWithTasks(id);
+            //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
+            if (activeProd != null)
+            {
+                return View(activeProd);
+            }
+            return NotFound();
+        }
+         
+        public async Task<IActionResult> ManagerPanel(int id)
+        {
+            Production activeProd = await _productionRepository.GetByIdWithTasks(id);
+            //ProductionMainPageOverviewModel vm = new ProductionMainPageOverviewModel();
+            if (activeProd != null)
+            {
+                return View(activeProd);
+            }
+            return NotFound();
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> Create()

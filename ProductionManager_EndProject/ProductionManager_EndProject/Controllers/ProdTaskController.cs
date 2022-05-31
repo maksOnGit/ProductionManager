@@ -96,5 +96,45 @@ namespace ProductionManager_EndProject.Controllers
             }
             return NotFound();
         }
+        [HttpGet]
+        public async Task<IActionResult> FinishTask(int id, int productionId)
+        {
+            if (id == 0 || productionId == 0)
+            {
+                return NotFound();
+            }
+            ProdTaskFinishOverviewModel vm = new ProdTaskFinishOverviewModel();
+            vm.Id = id;
+            vm.ProductionId = productionId;
+            return View(vm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> FinishTask(ProdTaskFinishOverviewModel model)
+        {
+            ProdTask prodTask = await _prodTaskRepository.GetById(model.Id);
+            if (prodTask != null)
+            {
+                prodTask.ProdTaskStatusId = 3;
+                await _prodTaskRepository.Update(prodTask);
+                return RedirectToAction("MainPage", "Production", new { id = model.ProductionId });
+            }
+            return NotFound();
+        } 
+        
+        public async Task<IActionResult> TaskVerified(int id, int productionId)
+        {
+            var task = await _prodTaskRepository.GetById(id);
+            if (task != null)
+            {
+                task.ProductionId = null;
+                var taskConfirmation = await _prodTaskRepository.Update(task);
+                if (taskConfirmation != null)
+                {
+                    ViewBag.Confirmation = "This ticket was successfully archived";
+                    return RedirectToAction("ManagerPanel", "Production", new {id = productionId});
+                }
+            }
+            return NotFound();
+        }
     }
 }

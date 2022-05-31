@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProductionManager_EndProject.Migrations
 {
-    public partial class init : Migration
+    public partial class yolo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -287,7 +287,7 @@ namespace ProductionManager_EndProject.Migrations
                         column: x => x.ProductionId,
                         principalTable: "Productions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -402,8 +402,8 @@ namespace ProductionManager_EndProject.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "BirthDay", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Number", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Street", "TwoFactorEnabled", "UserName", "ZIP" },
                 values: new object[,]
                 {
-                    { "1", 0, new DateTime(2022, 5, 30, 0, 36, 6, 132, DateTimeKind.Local).AddTicks(5491), "Bruxelles", "f5772a14-1f82-4545-8193-68bb731ce5f2", "Belgium", "max@intec.be", true, "Maximilian", null, "Poniatowski", false, null, "MAX@INTEC.BE", "MAX", 5, "AQAAAAEAACcQAAAAEGiFR5VZKcVNjpvBjKQWAgXAZnMAPet1wkyHbHfcJkJGU2vfden51vE0GWYwvlBCtQ==", "02/789.321", false, "6fd26272-45c2-483f-bc63-fd1e73b341ae", "Nieuwe Straat", false, "max", 1000 },
-                    { "2", 0, new DateTime(2022, 5, 30, 0, 36, 6, 137, DateTimeKind.Local).AddTicks(2568), "Bruxelles", "2b59af9e-869e-4012-887b-f1a24bb346aa", "Belgium", "admin@intec.be", true, "Admin", null, "The first one", false, null, "ADMIN@INTEC.BE", "ADMIN", 5, "AQAAAAEAACcQAAAAEGiFR5VZKcVNjpvBjKQWAgXAZnMAPet1wkyHbHfcJkJGU2vfden51vE0GWYwvlBCtQ==", "02/189.181", false, "e13ad11a-be3a-4332-b0c7-d845f2d04e6a", "Nieuwe Straat", false, "admin", 1000 }
+                    { "1", 0, new DateTime(2022, 5, 31, 21, 42, 50, 708, DateTimeKind.Local).AddTicks(6632), "Bruxelles", "b239b4bb-c10d-4456-9ed6-988af67e689d", "Belgium", "max@intec.be", true, "Maximilian", null, "Poniatowski", false, null, "MAX@INTEC.BE", "MAX", 5, "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==", "02/789.321", false, "f274d333-747d-4a08-9d51-61c4ae264f51", "Nieuwe Straat", false, "max", 1000 },
+                    { "2", 0, new DateTime(2022, 5, 31, 21, 42, 50, 712, DateTimeKind.Local).AddTicks(8883), "Bruxelles", "be255f4d-8df8-47b2-be1b-2598656bf37d", "Belgium", "admin@intec.be", true, "Admin", null, "The first one", false, null, "ADMIN@INTEC.BE", "ADMIN", 5, "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==", "02/189.181", false, "0855c0cc-3dc4-40c4-9928-e747312a4af5", "Nieuwe Straat", false, "admin", 1000 }
                 });
 
             migrationBuilder.InsertData(
@@ -458,17 +458,17 @@ namespace ProductionManager_EndProject.Migrations
             migrationBuilder.InsertData(
                 table: "Lots",
                 columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 1, "DanishTrolley 12, 13, 14", null, 50.0, true, 1, "Shitake", 24.5, null, 1, new DateTime(2022, 5, 25, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(1041), null });
+                values: new object[] { 1, "DanishTrolley 12, 13, 14", null, 50.0, true, 1, "Shitake", 24.5, null, 1, new DateTime(2022, 5, 26, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(7156), null });
 
             migrationBuilder.InsertData(
                 table: "Lots",
                 columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 2, "DanishTrolley 15, 16, 17", null, 50.0, true, 1, "Shitake", 0.0, null, 1, new DateTime(2022, 5, 30, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(2616), null });
+                values: new object[] { 2, "DanishTrolley 15, 16, 17", null, 50.0, true, 1, "Shitake", 0.0, null, 1, new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8704), null });
 
             migrationBuilder.InsertData(
                 table: "Lots",
                 columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 3, "In the middle of the central column", null, 15.0, true, 2, "Maitake", 0.0, null, 3, new DateTime(2022, 5, 30, 0, 36, 6, 138, DateTimeKind.Local).AddTicks(2635), null });
+                values: new object[] { 3, "In the middle of the central column", null, 15.0, true, 2, "Maitake", 0.0, null, 3, new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8722), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

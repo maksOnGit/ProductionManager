@@ -13,6 +13,8 @@ namespace ProductionManager_EndProject.Repositories
         {
         }
 
+
+
         public async Task<Production> GetByIdInclusive<T>(T id)
         {
             return await _dbContext.Productions.Include(x => x.ProdTasks)
@@ -20,6 +22,19 @@ namespace ProductionManager_EndProject.Repositories
                                                 .Include(x => x.Rooms)
                                                 .ThenInclude(x => x.Lots)
                                                 .Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+        }
+        
+        public async Task<Production> GetByIdWithUnits<T>(T id)
+        {
+            return await _dbContext.Productions.Include(x => x.Rooms)
+                                                .ThenInclude(x => x.Lots)
+                                                .Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+        }
+        public async Task<Production> GetByIdWithTasks<T>(T id)
+        {
+            return await _dbContext.Productions.Include(x => x.ProdTasks)
+                                               .ThenInclude(p => p.ProdTaskUsers)
+                                               .Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
         }
 
         public override async Task<Production> GetById<T>(T id)

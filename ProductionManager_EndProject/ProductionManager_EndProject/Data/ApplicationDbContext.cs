@@ -107,10 +107,10 @@ namespace ProductionManager_EndProject.Data
                 .HasMaxLength(500)
                 .IsRequired();
 
-            prodTask.HasOne(p => p.Production)
-                .WithMany(p => p.ProdTasks)
-                .HasForeignKey(p => p.ProductionId)
-                .OnDelete(DeleteBehavior.NoAction);
+            //prodTask.HasOne(p => p.Production)
+            //    .WithMany(p => p.ProdTasks)
+            //    .HasForeignKey(p => p.ProductionId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
 
             //ProdTaskStatuses
             builder.Entity<ProdTaskStatus>()
@@ -126,10 +126,10 @@ namespace ProductionManager_EndProject.Data
             //Production  
             var prod = builder.Entity<Production>();
 
-            prod.HasMany(p => p.ProdTasks)
-                .WithOne(p => p.Production)
-                .HasForeignKey(p => p.ProductionId)
-                .OnDelete(DeleteBehavior.SetNull);
+            //prod.HasMany(p => p.ProdTasks)
+            //    .WithOne(p => p.Production)
+            //    .HasForeignKey(p => p.ProductionId)
+            //    .OnDelete(DeleteBehavior.SetNull);
 
             prod.HasIndex(p => p.ProductionName)
                 .IsUnique();

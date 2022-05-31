@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProductionLibrary
+@inject UserManager<User> userManager
+
+@*@{
+    }*@
+@model Production
+
+<div class="topnav mb-3">
+    <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.Id">Overview</a>
+    <a asp-controller="Production" asp-action="Units" asp-route-id="@Model.Id">Units</a>
+    <a asp-controller="Production" asp-action="Missions" asp-route-id="@Model.Id">Missions</a>
+    <a asp-controller="Production" asp-action="ManagerPanel" asp-route-id="@Model.Id" class="active">Manager Panel</a>
+</div>
+@ViewBag.Confirmation
+
+<h2 class="subtitle-box">@Model.ProductionName's completed missions</h2>
+@if (Model.ProdTasks.Count() == 0)
+{
+    <h3 class="subtitle-box">No completed missions curently</h3>
+}
+else
+{
+    <table class="table table-bordered mt-2">
+        <thead>
+            <tr>
+                <th width="100%" class="h2 text-center border-white border-top-0 coltitle">Completed Missions(@Model.ProdTasks.Where(t => t.ProdTaskStatusId == 3 && t.ProductionId == Model.Id).Count())</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-primary">
+                    @foreach (var prodTask in Model.ProdTasks.Where(t => (t.ProdTaskStatusId == 3) && t.ProductionId == Model.Id))
+                    {
+                        <div class="card border bodyground bg-success my-2" width="100%">
+                            <div class="card-body">
+                                <h5 class="card-title">@prodTask.TaskName</h5>
+                                <hr>
+                                <pre readonly class="card-text">@prodTask.TaskDescription</pre>
+                                <hr>
+                                <h5 style="color: blue">Assigned:</h5>
+                                @foreach (var prodTaskUsers in prodTask.ProdTaskUsers.Where(p => p.ProdTaskId == prodTask.Id))
+                                {
+                                    <div class="assigned mt-3">@prodTaskUsers.UserName</div>
+                                }
+                                <a asp-controller="ProdTask" asp-action="TaskVerified" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-primary mt-4 ml-3">Validate</a>
+                                
+                            </div>
+                        </div>
+
+                    }
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+}

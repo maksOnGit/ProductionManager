@@ -1,0 +1,18 @@
+﻿
+@model ProdTaskFinishOverviewModel
+
+<div class="card">
+    <h5 class="card-header bg-success">Confirmation Required</h5>
+    <div class="card-body">
+        <p>Are you sure that you want to mark this mission as completed ?</p>
+    </div>
+    <div class="card-footer">
+    <form asp-controller="ProdTask" asp-action="FinishTask" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProductionId" />
+        <input type="submit" value="Mark as done" class="btn btn-success"/>
+        <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId" class="btn btn-secondary">No</a>
+    </form>
+
+    </div>
+</div>
