@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProductionLibrary;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProductionManager_EndProject.Controllers
 {
+    [Authorize(Roles = "admin, manager")]
     public class RoomController : Controller
     {
         private readonly RoomRepository _roomRepository;
@@ -42,7 +44,7 @@ namespace ProductionManager_EndProject.Controllers
                 if (result != null)
                 {
 
-                    return RedirectToAction("MainPage", "Production", new { id = room.ProductionId});
+                    return RedirectToAction("Units", "Production", new { id = room.ProductionId});
                 }
                 ModelState.AddModelError(nameof(room.RoomName), "U already have a unit with this name");
             }
@@ -66,7 +68,7 @@ namespace ProductionManager_EndProject.Controllers
         public async Task<IActionResult> DeletePost(DeleteRoomOverviewModel vm)
         {
             var target = await _roomRepository.DeleteById(vm.RoomId);
-            return RedirectToAction("MainPage", "Production", new {id = target.ProductionId});
+            return RedirectToAction("Units", "Production", new {id = target.ProductionId});
 
         }
     }

@@ -14,10 +14,10 @@
 </div>
 
 <h2 class="subtitle-box">@Model.ProductionName's missions</h2>
-@if (Model.ProdTasks.Count() == 0)
+@if (Model.ProdTasks.Where(p => p.ProdTaskStatusId == 1 || p.ProdTaskStatusId == 2).Count() == 0)
 {
-    <h3>No avaiable missions curently</h3>
-    <a asp-controller="ProdTask" asp-action="Create" asp-route-productionId="@Model.Id" class="btn btn-primary">New Mission</a>
+    <h3 class="warning-box">No avaiable missions curently</h3>
+    <a asp-controller="ProdTask" asp-action="Create" asp-route-productionId="@Model.Id" class="btn btn-blue">New Mission</a>
 }
 else
 {
@@ -44,8 +44,8 @@ else
                                     <h5 style="color: blue">Assigned:</h5>
                                     
                                         <div class="new-task">New Task !</div>
-                                    
-                                    <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-primary mt-4">Take Mission</a>
+                                    <hr>
+                                    <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-blue mt-4">Take Mission</a>
                                 </div>
                             </div>
                         }
@@ -62,21 +62,21 @@ else
                                     {
                                         <div class="assigned mt-3">@prodTaskUsers.UserName</div>
                                     }
-
+                                    <hr>
                                     @{
                                         var t = prodTask.ProdTaskUsers.Where(p => p.ProdTaskId == prodTask.Id && p.UserId == @userManager.GetUserId(User));
                                     }
                                     @if (t.Count() == 0)
                                     {
-                                        <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-primary mt-4">Take Mission</a>
+                                        <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-blue mt-4">Take Mission</a>
                                     }
                                     else
                                     {
-                                        <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-danger mt-4">Remove Mission</a>
+                                        <a asp-controller="ProdTask" asp-action="AssignProdTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-red mt-4">Remove Mission</a>
                                     }
                                     @if (t.Count() != 0)
                                    {
-                                    <a asp-controller="ProdTask" asp-action="FinishTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-success mt-4 ml-3">Mission completed</a>                                       
+                                    <a asp-controller="ProdTask" asp-action="FinishTask" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-green mt-4 ml-3">Mission completed</a>                                       
                                    }
                                 </div>
                             </div>
@@ -88,5 +88,5 @@ else
         </tbody>
     </table>
 
-    <a asp-controller="ProdTask" asp-action="Create" asp-route-productionId="@Model.Id" class="btn btn-primary">New Mission</a>
+    <a asp-controller="ProdTask" asp-action="Create" asp-route-productionId="@Model.Id" class="btn btn-blue">New Mission</a>
 }

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace ProductionManager_EndProject.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "admin, manager, worker")]
     public class ProdTaskController : Controller
     {
 
@@ -49,7 +50,7 @@ namespace ProductionManager_EndProject.Controllers
             };
 
             await _prodTaskRepository.Create(prodTask);
-            return RedirectToAction("MainPage", "Production", new { id = model.ProductionId });
+            return RedirectToAction("Missions", "Production", new { id = model.ProductionId });
         }
 
         public async Task<IActionResult> AssignProdTask(int id, int productionId)
@@ -91,7 +92,7 @@ namespace ProductionManager_EndProject.Controllers
                         await _prodTaskRepository.Update(prodTask);
                     }
                 }
-                return RedirectToAction("MainPage", "Production", new { id = productionId });
+                return RedirectToAction("Missions", "Production", new { id = productionId });
 
             }
             return NotFound();
@@ -116,11 +117,12 @@ namespace ProductionManager_EndProject.Controllers
             {
                 prodTask.ProdTaskStatusId = 3;
                 await _prodTaskRepository.Update(prodTask);
-                return RedirectToAction("MainPage", "Production", new { id = model.ProductionId });
+                return RedirectToAction("Missions", "Production", new { id = model.ProductionId });
             }
             return NotFound();
-        } 
-        
+        }
+
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> TaskVerified(int id, int productionId)
         {
             var task = await _prodTaskRepository.GetById(id);

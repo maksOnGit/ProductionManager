@@ -40,7 +40,7 @@ namespace ProductionManager_EndProject.Data
                 .HasMaxLength(50);
             order.Property(o => o.Price)
                 .HasMaxLength(6);
-            
+
 
             //User
             var user = builder.Entity<User>();
@@ -186,7 +186,7 @@ namespace ProductionManager_EndProject.Data
 
             PasswordHasher<User> hasher = new PasswordHasher<User>();
             string hashedPassword = hasher.HashPassword(new User(), "Test-1");
-            
+
             //UserSeed
 
             var users = new User[]
@@ -209,7 +209,6 @@ namespace ProductionManager_EndProject.Data
                     PhoneNumber = "02/789.321"
                     },
 
-
                 new User { Id = "2",
                     UserName = "admin",
                     FirstName="Admin",
@@ -217,6 +216,42 @@ namespace ProductionManager_EndProject.Data
                     NormalizedUserName = "ADMIN",
                     Email = "admin@intec.be",
                     NormalizedEmail = "ADMIN@INTEC.BE",
+                    EmailConfirmed = true,
+                    PasswordHash = hashedPassword,
+                    BirthDay = DateTime.Now,
+                    Country = "Belgium",
+                    City = "Bruxelles",
+                    Number = 5,
+                    Street = "Nieuwe Straat",
+                    ZIP = 1000,
+                    PhoneNumber = "02/189.181"
+                    },
+
+                new User { Id = "3",
+                    UserName = "worker",
+                    FirstName="Worker",
+                    LastName="The first one",
+                    NormalizedUserName = "WORKER",
+                    Email = "worker@intec.be",
+                    NormalizedEmail = "WORKER@INTEC.BE",
+                    EmailConfirmed = true,
+                    PasswordHash = hashedPassword,
+                    BirthDay = DateTime.Now,
+                    Country = "Belgium",
+                    City = "Bruxelles",
+                    Number = 5,
+                    Street = "Nieuwe Straat",
+                    ZIP = 1000,
+                    PhoneNumber = "02/189.181"
+                    },
+
+                new User { Id = "4",
+                    UserName = "manager",
+                    FirstName="Manager",
+                    LastName="The first one",
+                    NormalizedUserName = "MANAGER",
+                    Email = "worker@intec.be",
+                    NormalizedEmail = "MANAGER@INTEC.BE",
                     EmailConfirmed = true,
                     PasswordHash = hashedPassword,
                     BirthDay = DateTime.Now,
@@ -241,25 +276,27 @@ namespace ProductionManager_EndProject.Data
                     Number= 10,
                     PhoneNumber = "02/153.154",
                     Email = "SmartFood@smartfood.com",
-                    ProductionName = "SmartFood-Brusels",
-                }
-            };
-
-            //RoomSeed
-
-            var rooms = new Room[]
-            {
-                new Room { Id = 1,
-                        ProductionId = 1,
-                        RoomName = "Room 1"
+                    ProductionName = "SmartFood",
                 },
-                new Room { Id = 2,
-                        ProductionId = 1,
-                        RoomName = "Room 2"
+                new Production { Id = 2,
+                    City = "Bruxelles",
+                    Country = "Belgium",
+                    ZIP = 1000,
+                    Street = "High Street",
+                    Number= 10,
+                    PhoneNumber = "02/153.154",
+                    Email = "SmartFoodGreen@smartfood.com",
+                    ProductionName = "SmartFoodGreens",
                 },
-                new Room { Id = 3,
-                        ProductionId = 1,
-                        RoomName = "Room 3"
+                new Production { Id = 3,
+                    City = "Bruxelles",
+                    Country = "Belgium",
+                    ZIP = 1000,
+                    Street = "High Street",
+                    Number= 10,
+                    PhoneNumber = "02/153.154",
+                    Email = "SmartFoodSpace@smartfood.com",
+                    ProductionName = "SmartFoodSpace-Brussels",
                 }
             };
 
@@ -270,20 +307,81 @@ namespace ProductionManager_EndProject.Data
                 new Product { Id = 1,
                             ProductName = "Shitake",
                             Price = 18,
-                            PriceFor = "kilogram",
-                            NotOrderedStock = 45,
-                            OrderedStock = 15,
-                            RealStock = 60,
+                            PriceFor = "Kilogram",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 40.58,
                             },
                 new Product { Id = 2,
                             ProductName = "Maitake",
-                            Price = 26,
-                            PriceFor = "kilogram",
-                            NotOrderedStock = 6,
-                            OrderedStock = 56,
-                            RealStock = 62,
-                            
+                            Price = 26.50,
+                            PriceFor = "Kilogram",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 0,
+                            },
+                new Product { Id = 3,
+                            ProductName = "Nameko",
+                            Price = 20,
+                            PriceFor = "Kilogram",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 0,
+                            },
+                new Product { Id = 4,
+                            ProductName = "Amaranth",
+                            Price = 10,
+                            PriceFor = "Unit",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 0,
+                            },
+                new Product { Id = 5,
+                            ProductName = "Black Mustard",
+                            Price = 6.50,
+                            PriceFor = "Unit",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 0,
+                            },
+                new Product { Id = 6,
+                            ProductName = "Sunflower",
+                            Price = 5.20,
+                            PriceFor = "Unit",
+                            NotOrderedStock = 0,
+                            OrderedStock = 0,
+                            RealStock = 0,
                             }
+            };
+
+            //RoomSeed
+
+            var rooms = new Room[]
+            {
+                new Room { Id = 1,
+                        ProductionId = 1,
+                        RoomName = "Growing Room 1"
+                },
+                new Room { Id = 2,
+                        ProductionId = 1,
+                        RoomName = "Growing Room 2"
+                },
+                new Room { Id = 3,
+                        ProductionId = 1,
+                        RoomName = "Growing Room 3"
+                },
+                new Room { Id = 4,
+                        ProductionId = 2,
+                        RoomName = "MicroGreen Room 1"
+                },
+                new Room { Id = 5,
+                        ProductionId = 2,
+                        RoomName = "MicroGreen Room 2"
+                },
+                new Room { Id = 6,
+                        ProductionId = 2,
+                        RoomName = "MicroGreen Room 3"
+                }
             };
 
             //LotsSeed
@@ -296,9 +394,12 @@ namespace ProductionManager_EndProject.Data
                         IsGrowing = true,
                         StartDate = DateTime.Now.AddDays(-5),
                         EstimatedQuantitie = 50,
-                        RecoltedQuantitie = 24.5,
+                        RecoltedQuantitie = 28,
                         RoomId = 1,
-                        ProductId = 1
+                        ProductId = 1,
+                        UnitType = "Kilogram",
+                        Reference = "SHIe14022022-14026045"
+
                         },
                 new Lot { Id = 2,
                         ProductName = "Shitake",
@@ -306,10 +407,11 @@ namespace ProductionManager_EndProject.Data
                         IsGrowing = true,
                         StartDate = DateTime.Now,
                         EstimatedQuantitie = 50,
-                        RecoltedQuantitie = 0,
+                        RecoltedQuantitie = 12.58,
                         RoomId = 1,
-                        ProductId = 1
-
+                        ProductId = 1,
+                        UnitType = "Kilogram",
+                        Reference = "SHIe15022022-17048045"
                         },
                 new Lot { Id = 3,
                         ProductName = "Maitake",
@@ -319,7 +421,45 @@ namespace ProductionManager_EndProject.Data
                         EstimatedQuantitie = 15,
                         RecoltedQuantitie = 0,
                         RoomId = 3,
-                        ProductId = 2
+                        ProductId = 2,
+                        UnitType = "Kilogram",
+                        Reference = "MAIe15022022-17057055"
+                        },
+                new Lot { Id = 4,
+                        ProductName = "Amaranth",
+                        Description = "In the middle of the central column",
+                        IsGrowing = true,
+                        StartDate = DateTime.Now,
+                        EstimatedQuantitie = 30,
+                        RecoltedQuantitie = 0,
+                        RoomId = 4,
+                        ProductId = 4,
+                        UnitType = "Unit",
+                        Reference = "MAIe21022022-08033014"
+                        },
+                new Lot { Id = 5,
+                        ProductName = "Black Mustard",
+                        Description = "In the middle of the central column",
+                        IsGrowing = true,
+                        StartDate = DateTime.Now,
+                        EstimatedQuantitie = 50,
+                        RecoltedQuantitie = 0,
+                        RoomId = 5,
+                        ProductId = 5,
+                        UnitType = "Unit",
+                        Reference = "BLAm22022022-14034012"
+                        },
+                new Lot { Id = 6,
+                        ProductName = "Sunflower",
+                        Description = "In the middle of the central column",
+                        IsGrowing = true,
+                        StartDate = DateTime.Now,
+                        EstimatedQuantitie = 80,
+                        RecoltedQuantitie = 0,
+                        RoomId = 6,
+                        ProductId = 6,
+                        UnitType = "Unit",
+                        Reference = "SUNr25022022-18020005"
                         }
             };
 
@@ -381,7 +521,91 @@ namespace ProductionManager_EndProject.Data
                     Id = 3,
                     StatusName = "Closed"
                 }
-            }; 
+            };
+
+            //ProdTask
+
+            var prodTasks = new ProdTask[]
+            {
+                new ProdTask
+                {
+                    Id = 1,
+                    ProductionId = 1,
+                    TaskName = "Recolt",
+                    TaskDescription = "- Recolt Shitake in growing room 1 and clean old substracts",
+                    ProdTaskStatusId = 1,
+                },
+                new ProdTask
+                {
+                    Id = 2,
+                    ProductionId = 1,
+                    TaskName = "Recolt",
+                    TaskDescription = "- Recolt Maitake in growing room 3 and clean old substracts",
+                    ProdTaskStatusId = 1,
+                },
+                new ProdTask
+                {
+                    Id = 3,
+                    ProductionId = 1,
+                    TaskName = "Grow",
+                    TaskDescription = "- Check if we have substracts ready to go into the growing rooms",
+                    ProdTaskStatusId = 1,
+                },
+                new ProdTask
+                {
+                    Id = 4,
+                    ProductionId = 1,
+                    TaskName = "Clean",
+                    TaskDescription = "- Big Cleaning of growing room 2",
+                    ProdTaskStatusId = 1,
+                },
+            };
+
+
+            var roles = new IdentityRole[]
+            {
+                  new IdentityRole
+                  {
+                      Id = "1",
+                      ConcurrencyStamp = "dfdsf",
+                      Name = "admin",
+                      NormalizedName = "ADMIN"
+                  },
+                  new IdentityRole
+                  {
+                      Id = "2",
+                      ConcurrencyStamp = "dfd4564sf",
+                      Name = "manager",
+                      NormalizedName = "MANAGER"
+                  },
+                  new IdentityRole
+                  {
+                      Id = "3",
+                      ConcurrencyStamp = "dfdsffds",
+                      Name = "worker",
+                      NormalizedName = "WORKER"
+                  },
+
+            };
+
+            var assignedRoles = new IdentityUserRole<string>[]
+            {
+                new IdentityUserRole<string>
+                {
+                    UserId = "2",
+                    RoleId = "1"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3",
+                    RoleId = "3"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "4",
+                    RoleId = "2"
+                },
+            };
 
 
             builder.Entity<User>().HasData(users);
@@ -391,9 +615,12 @@ namespace ProductionManager_EndProject.Data
             builder.Entity<Client>().HasData(clients);
             builder.Entity<Room>().HasData(rooms);
             builder.Entity<ProdTaskStatus>().HasData(prodTaskStatuses);
+            builder.Entity<ProdTask>().HasData(prodTasks);
+            builder.Entity<IdentityRole>().HasData(roles);
+            builder.Entity<IdentityUserRole<string>>().HasData(assignedRoles);
 
 
-            base.OnModelCreating(builder);  
+            base.OnModelCreating(builder);
         }
     }
 }

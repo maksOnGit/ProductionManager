@@ -15,6 +15,7 @@ using ProductionManager_EndProject.Repositories;
 namespace ProductionManager_EndProject.Controllers
 {
 
+    [Authorize(Roles = "admin, manager, worker")]
     public class ProductionController : Controller
     {
         private readonly ProductionRepository _productionRepository;
@@ -93,7 +94,7 @@ namespace ProductionManager_EndProject.Controllers
             }
             return NotFound();
         }
-         
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> ManagerPanel(int id)
         {
             Production activeProd = await _productionRepository.GetByIdWithTasks(id);
@@ -105,14 +106,14 @@ namespace ProductionManager_EndProject.Controllers
             return NotFound();
         }
 
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
-
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Production production)
@@ -129,6 +130,7 @@ namespace ProductionManager_EndProject.Controllers
             return View(production);
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -145,7 +147,7 @@ namespace ProductionManager_EndProject.Controllers
             return View(production);
         }
 
-
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Production production)
@@ -167,7 +169,7 @@ namespace ProductionManager_EndProject.Controllers
             return View(production);
         }
 
-
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,6 +186,7 @@ namespace ProductionManager_EndProject.Controllers
             return View(production);
         }
 
+        [Authorize(Roles = "admin, manager")]
         // POST: Production/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

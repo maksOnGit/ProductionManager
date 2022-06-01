@@ -18,11 +18,8 @@ namespace ProductionManager_EndProject.Models
         [Display(Name = "Measurement unit (Kilogram, gram, meter, unit, ...")]
         public string PriceFor { get; set; }
         [Required]
-        public int RealStock { get; set; }
-        [Required]
-        public int OrderedStock { get; set; }
-        [Required]
-        public int NotOrderedStock { get; set; }
+        public double RealStock { get; set; }
+
         public string ImageUrl { get; set; }
 
         //Navigation Property

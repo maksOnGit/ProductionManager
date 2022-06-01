@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProductionLibrary;
 using ProductionManager_EndProject.Models;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProductionManager_EndProject.Controllers
 {
+    
     public class ProductController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -17,20 +19,20 @@ namespace ProductionManager_EndProject.Controllers
             _userManager = userManager;
             _productRepository = productRepository;
         }
-
+        [Authorize(Roles = "admin, manager, worker")]
         public async Task<IActionResult> Index()
         {
             ProductIndexOverviewModel model = new ProductIndexOverviewModel();
             model.products = _productRepository.GetAll();
             return View(model);
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View("CreateEdit");
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -42,14 +44,12 @@ namespace ProductionManager_EndProject.Controllers
             vm.Price = product.Price;
             vm.PriceFor = product.PriceFor;
             vm.RealStock = product.RealStock;
-            vm.OrderedStock = product.OrderedStock;
-            vm.NotOrderedStock = product.NotOrderedStock;
-            
+
             
 
             return View("CreateEdit", vm);
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(CreateEditProductOverviewModel model)
@@ -63,8 +63,6 @@ namespace ProductionManager_EndProject.Controllers
                                             ImageUrl = model.ImageUrl,
                                             PriceFor = model.PriceFor,
                                             RealStock = model.RealStock,
-                                            OrderedStock = model.OrderedStock,
-                                            NotOrderedStock = model.NotOrderedStock,
                                             Price = (double)model.Price
                                            };
             if (model.Id == 0)
@@ -79,7 +77,7 @@ namespace ProductionManager_EndProject.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -87,7 +85,7 @@ namespace ProductionManager_EndProject.Controllers
             vm.Id = id;
             return View(vm);
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(ProductDeleteOverviewModel model)

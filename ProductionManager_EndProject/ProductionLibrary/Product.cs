@@ -13,9 +13,9 @@ namespace ProductionLibrary
         public double Price { get; set; }
         public string PriceFor { get; set; }
         public string ImageUrl { get; set; }
-        public int RealStock { get; set; }
-        public int OrderedStock { get; set; }
-        public int NotOrderedStock { get; set; }
+        public double RealStock { get; set; }
+        public double? OrderedStock { get; set; }
+        public double? NotOrderedStock { get; set; }
 
         //Navigation Property
 

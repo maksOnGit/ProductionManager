@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProductionManager_EndProject.Migrations
 {
-    public partial class yolo : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,9 +117,9 @@ namespace ProductionManager_EndProject.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     PriceFor = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RealStock = table.Column<int>(type: "int", nullable: false),
-                    OrderedStock = table.Column<int>(type: "int", nullable: false),
-                    NotOrderedStock = table.Column<int>(type: "int", nullable: false)
+                    RealStock = table.Column<double>(type: "float", nullable: false),
+                    OrderedStock = table.Column<double>(type: "float", nullable: true),
+                    NotOrderedStock = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -398,12 +398,24 @@ namespace ProductionManager_EndProject.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1", "dfdsf", "admin", "ADMIN" },
+                    { "2", "dfd4564sf", "manager", "MANAGER" },
+                    { "3", "dfdsffds", "worker", "WORKER" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "BirthDay", "City", "ConcurrencyStamp", "Country", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Number", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Street", "TwoFactorEnabled", "UserName", "ZIP" },
                 values: new object[,]
                 {
-                    { "1", 0, new DateTime(2022, 5, 31, 21, 42, 50, 708, DateTimeKind.Local).AddTicks(6632), "Bruxelles", "b239b4bb-c10d-4456-9ed6-988af67e689d", "Belgium", "max@intec.be", true, "Maximilian", null, "Poniatowski", false, null, "MAX@INTEC.BE", "MAX", 5, "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==", "02/789.321", false, "f274d333-747d-4a08-9d51-61c4ae264f51", "Nieuwe Straat", false, "max", 1000 },
-                    { "2", 0, new DateTime(2022, 5, 31, 21, 42, 50, 712, DateTimeKind.Local).AddTicks(8883), "Bruxelles", "be255f4d-8df8-47b2-be1b-2598656bf37d", "Belgium", "admin@intec.be", true, "Admin", null, "The first one", false, null, "ADMIN@INTEC.BE", "ADMIN", 5, "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==", "02/189.181", false, "0855c0cc-3dc4-40c4-9928-e747312a4af5", "Nieuwe Straat", false, "admin", 1000 }
+                    { "2", 0, new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4268), "Bruxelles", "0804f8ae-f938-4cba-b490-2aa18b55ebfa", "Belgium", "admin@intec.be", true, "Admin", null, "The first one", false, null, "ADMIN@INTEC.BE", "ADMIN", 5, "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==", "02/189.181", false, "283ffb98-47b8-4a52-b5c7-56e80f0b6ce5", "Nieuwe Straat", false, "admin", 1000 },
+                    { "1", 0, new DateTime(2022, 6, 1, 3, 8, 35, 776, DateTimeKind.Local).AddTicks(8674), "Bruxelles", "f1dea21f-79d3-4f42-8934-aff1b5fdac2e", "Belgium", "max@intec.be", true, "Maximilian", null, "Poniatowski", false, null, "MAX@INTEC.BE", "MAX", 5, "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==", "02/789.321", false, "3b3215bb-d5a7-4c9e-92ae-f7880e36fe36", "Nieuwe Straat", false, "max", 1000 },
+                    { "3", 0, new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4330), "Bruxelles", "4e9d2dcc-5e15-4b2a-8350-69e6cce68a2b", "Belgium", "worker@intec.be", true, "Worker", null, "The first one", false, null, "WORKER@INTEC.BE", "WORKER", 5, "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==", "02/189.181", false, "d9d296a9-b697-40f0-adde-6fa0a1b15e35", "Nieuwe Straat", false, "worker", 1000 },
+                    { "4", 0, new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4345), "Bruxelles", "6f02c956-a23d-453b-b306-b327c5f71603", "Belgium", "worker@intec.be", true, "Manager", null, "The first one", false, null, "MANAGER@INTEC.BE", "MANAGER", 5, "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==", "02/189.181", false, "b82f2136-fde6-4dca-a61b-18fafdcd5637", "Nieuwe Straat", false, "manager", 1000 }
                 });
 
             migrationBuilder.InsertData(
@@ -411,9 +423,9 @@ namespace ProductionManager_EndProject.Migrations
                 columns: new[] { "ClientId", "City", "Country", "Email", "ImageUrl", "Number", "PhoneNumber", "Street", "ZIP" },
                 values: new object[,]
                 {
-                    { "Luxus Restaurant", "Bruxelles", "Belgium", "LuxusRest@outlook.be", null, 5, "02/458.124", "Food Straat", 1000 },
+                    { "RoyVeggies", "Bruxelles", "Belgium", "RoyBalzac@outlook.be", null, 5, "02/124.124", "Butcher's Street", 1000 },
                     { "SmartKitchens-Anderlecht", "Bruxelles", "Belgium", "SmartKitchens1000@outlook.be", null, 152, "02/358.424", "Food Straat", 1000 },
-                    { "RoyVeggies", "Bruxelles", "Belgium", "RoyBalzac@outlook.be", null, 5, "02/124.124", "Butcher's Street", 1000 }
+                    { "Luxus Restaurant", "Bruxelles", "Belgium", "LuxusRest@outlook.be", null, 5, "02/458.124", "Food Straat", 1000 }
                 });
 
             migrationBuilder.InsertData(
@@ -421,54 +433,80 @@ namespace ProductionManager_EndProject.Migrations
                 columns: new[] { "Id", "StatusName" },
                 values: new object[,]
                 {
-                    { 1, "New" },
                     { 2, "Assigned" },
-                    { 3, "Closed" }
+                    { 3, "Closed" },
+                    { 1, "New" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Productions",
                 columns: new[] { "Id", "City", "Country", "Email", "Number", "PhoneNumber", "ProductionName", "Street", "ZIP" },
-                values: new object[] { 1, "Bruxelles", "Belgium", "SmartFood@smartfood.com", 10, "02/153.154", "SmartFood-Brusels", "High Street", 1000 });
+                values: new object[,]
+                {
+                    { 1, "Bruxelles", "Belgium", "SmartFood@smartfood.com", 10, "02/153.154", "SmartFood", "High Street", 1000 },
+                    { 2, "Bruxelles", "Belgium", "SmartFoodGreen@smartfood.com", 10, "02/153.154", "SmartFoodGreens", "High Street", 1000 },
+                    { 3, "Bruxelles", "Belgium", "SmartFoodSpace@smartfood.com", 10, "02/153.154", "SmartFoodSpace-Brusels", "High Street", 1000 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "ImageUrl", "NotOrderedStock", "OrderedStock", "Price", "PriceFor", "ProductName", "RealStock" },
                 values: new object[,]
                 {
-                    { 1, null, 45, 15, 18.0, "kilogram", "Shitake", 60 },
-                    { 2, null, 6, 56, 26.0, "kilogram", "Maitake", 62 }
+                    { 1, null, 0.0, 0.0, 18.0, "Kilogram", "Shitake", 40.579999999999998 },
+                    { 3, null, 0.0, 0.0, 20.0, "Kilogram", "Nameko", 0.0 },
+                    { 4, null, 0.0, 0.0, 10.0, "Unit", "Amaranth", 0.0 },
+                    { 5, null, 0.0, 0.0, 6.5, "Unit", "Black Mustard", 0.0 },
+                    { 6, null, 0.0, 0.0, 5.2000000000000002, "Unit", "Sunflower", 0.0 },
+                    { 2, null, 0.0, 0.0, 26.5, "Kilogram", "Maitake", 0.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "1", "2" },
+                    { "3", "3" },
+                    { "2", "4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProdTasks",
+                columns: new[] { "Id", "ProdTaskStatusId", "ProductionId", "TaskDescription", "TaskName" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, "- Recolt Shitake in growing room 1 and clean old substracts", "Recolt" },
+                    { 2, 1, 1, "- Recolt Maitake in growing room 3 and clean old substracts", "Recolt" },
+                    { 3, 1, 1, "- Check if we have substracts ready to go into the growing rooms", "Grow" },
+                    { 4, 1, 1, "- Big Cleaning of growing room 2", "Clean" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Rooms",
                 columns: new[] { "Id", "ProductionId", "RoomName" },
-                values: new object[] { 1, 1, "Room 1" });
-
-            migrationBuilder.InsertData(
-                table: "Rooms",
-                columns: new[] { "Id", "ProductionId", "RoomName" },
-                values: new object[] { 2, 1, "Room 2" });
-
-            migrationBuilder.InsertData(
-                table: "Rooms",
-                columns: new[] { "Id", "ProductionId", "RoomName" },
-                values: new object[] { 3, 1, "Room 3" });
-
-            migrationBuilder.InsertData(
-                table: "Lots",
-                columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 1, "DanishTrolley 12, 13, 14", null, 50.0, true, 1, "Shitake", 24.5, null, 1, new DateTime(2022, 5, 26, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(7156), null });
+                values: new object[,]
+                {
+                    { 1, 1, "Growing Room 1" },
+                    { 2, 1, "Growing Room 2" },
+                    { 3, 1, "Growing Room 3" },
+                    { 4, 2, "MicroGreen Room 1" },
+                    { 5, 2, "MicroGreen Room 2" },
+                    { 6, 2, "MicroGreen Room 3" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Lots",
                 columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 2, "DanishTrolley 15, 16, 17", null, 50.0, true, 1, "Shitake", 0.0, null, 1, new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8704), null });
-
-            migrationBuilder.InsertData(
-                table: "Lots",
-                columns: new[] { "Id", "Description", "EndDate", "EstimatedQuantitie", "IsGrowing", "ProductId", "ProductName", "RecoltedQuantitie", "Reference", "RoomId", "StartDate", "UnitType" },
-                values: new object[] { 3, "In the middle of the central column", null, 15.0, true, 2, "Maitake", 0.0, null, 3, new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8722), null });
+                values: new object[,]
+                {
+                    { 1, "DanishTrolley 12, 13, 14", null, 50.0, true, 1, "Shitake", 28.0, "SHIe14022022-14026045", 1, new DateTime(2022, 5, 27, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(3584), "Kilogram" },
+                    { 2, "DanishTrolley 15, 16, 17", null, 50.0, true, 1, "Shitake", 12.58, "SHIe15022022-17048045", 1, new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6080), "Kilogram" },
+                    { 3, "In the middle of the central column", null, 15.0, true, 2, "Maitake", 0.0, "MAIe15022022-17057055", 3, new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6099), "Kilogram" },
+                    { 4, "In the middle of the central column", null, 30.0, true, 4, "Amaranth", 0.0, "MAIe21022022-08033014", 4, new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6104), "Unit" },
+                    { 5, "In the middle of the central column", null, 50.0, true, 5, "Black Mustard", 0.0, "BLAm22022022-14034012", 5, new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6109), "Unit" },
+                    { 6, "In the middle of the central column", null, 80.0, true, 6, "Sunflower", 0.0, "SUNr25022022-18020005", 6, new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6114), "Unit" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

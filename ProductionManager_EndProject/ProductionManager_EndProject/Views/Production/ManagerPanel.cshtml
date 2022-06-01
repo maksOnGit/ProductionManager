@@ -15,9 +15,9 @@
 @ViewBag.Confirmation
 
 <h2 class="subtitle-box">@Model.ProductionName's completed missions</h2>
-@if (Model.ProdTasks.Count() == 0)
+@if (Model.ProdTasks.Where(p => p.ProdTaskStatusId == 3).Count() == 0)
 {
-    <h3 class="subtitle-box">No completed missions curently</h3>
+    <h3 class=" warning-box">No completed missions curently</h3>
 }
 else
 {
@@ -43,7 +43,8 @@ else
                                 {
                                     <div class="assigned mt-3">@prodTaskUsers.UserName</div>
                                 }
-                                <a asp-controller="ProdTask" asp-action="TaskVerified" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-primary mt-4 ml-3">Validate</a>
+                                <hr>
+                                <a asp-controller="ProdTask" asp-action="TaskVerified" asp-route-id="@prodTask.Id" asp-route-productionId="@Model.Id" class="btn btn-green mt-4 ml-3">Validate</a>
                                 
                             </div>
                         </div>

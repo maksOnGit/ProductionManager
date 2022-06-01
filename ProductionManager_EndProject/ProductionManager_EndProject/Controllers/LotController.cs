@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductionLibrary;
 using ProductionManager_EndProject.Models;
 using ProductionManager_EndProject.Repositories;
@@ -18,6 +19,7 @@ namespace ProductionManager_EndProject.Controllers
             _productRepository = productRepository;
         }
 
+        [Authorize(Roles = "admin, manager, worker")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -65,7 +67,7 @@ namespace ProductionManager_EndProject.Controllers
 
             await _lotRepository.Create(lot);
 
-            return RedirectToAction("MainPage", "Production", new { id = model.ProductionId});
+            return RedirectToAction("Units", "Production", new { id = model.ProductionId});
         }
 
 
@@ -126,18 +128,33 @@ namespace ProductionManager_EndProject.Controllers
             }
             Lot lot = await _lotRepository.GetById(model.LotId);
             lot.RecoltedQuantitie = (double)(lot.RecoltedQuantitie + model.Collected);
+            double diff = 0;
             if (lot.RecoltedQuantitie < 0)
             {
+                diff = -lot.RecoltedQuantitie;
                 lot.RecoltedQuantitie = 0;
             }
-
             await _lotRepository.Update(lot);
 
-            return RedirectToAction("MainPage", "Production", new { id = model.ProductionId});
+            //Update main stock
+
+            Product product = await _productRepository.GetById(lot.ProductId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.RealStock += (double)(model.Collected + diff);
+
+            await _productRepository.Update(product);
+
+            return RedirectToAction("Units", "Production", new { id = model.ProductionId});
 
 
         }
 
+
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public async Task<IActionResult> Delete(int lotId, int productionId)
         {
@@ -153,6 +170,7 @@ namespace ProductionManager_EndProject.Controllers
 
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpPost]
         public async Task<IActionResult> Delete(LotDeleteOverviewModel model)
         {
@@ -165,7 +183,7 @@ namespace ProductionManager_EndProject.Controllers
             {
                 return NotFound();
             }
-            return RedirectToAction("MainPage", "Production", new {id = model.ProductionId});
+            return RedirectToAction("Units", "Production", new {id = model.ProductionId});
         }
     }
 }

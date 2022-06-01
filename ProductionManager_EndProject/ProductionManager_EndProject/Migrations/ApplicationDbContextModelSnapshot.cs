@@ -44,6 +44,29 @@ namespace ProductionManager_EndProject.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "dfdsf",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "dfd4564sf",
+                            Name = "manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "dfdsffds",
+                            Name = "worker",
+                            NormalizedName = "WORKER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -131,6 +154,23 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "3"
+                        },
+                        new
+                        {
+                            UserId = "4",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -291,9 +331,11 @@ namespace ProductionManager_EndProject.Migrations
                             IsGrowing = true,
                             ProductId = 1,
                             ProductName = "Shitake",
-                            RecoltedQuantitie = 24.5,
+                            RecoltedQuantitie = 28.0,
+                            Reference = "SHIe14022022-14026045",
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 26, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(7156)
+                            StartDate = new DateTime(2022, 5, 27, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(3584),
+                            UnitType = "Kilogram"
                         },
                         new
                         {
@@ -303,9 +345,11 @@ namespace ProductionManager_EndProject.Migrations
                             IsGrowing = true,
                             ProductId = 1,
                             ProductName = "Shitake",
-                            RecoltedQuantitie = 0.0,
+                            RecoltedQuantitie = 12.58,
+                            Reference = "SHIe15022022-17048045",
                             RoomId = 1,
-                            StartDate = new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8704)
+                            StartDate = new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6080),
+                            UnitType = "Kilogram"
                         },
                         new
                         {
@@ -316,8 +360,52 @@ namespace ProductionManager_EndProject.Migrations
                             ProductId = 2,
                             ProductName = "Maitake",
                             RecoltedQuantitie = 0.0,
+                            Reference = "MAIe15022022-17057055",
                             RoomId = 3,
-                            StartDate = new DateTime(2022, 5, 31, 21, 42, 50, 713, DateTimeKind.Local).AddTicks(8722)
+                            StartDate = new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6099),
+                            UnitType = "Kilogram"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "In the middle of the central column",
+                            EstimatedQuantitie = 30.0,
+                            IsGrowing = true,
+                            ProductId = 4,
+                            ProductName = "Amaranth",
+                            RecoltedQuantitie = 0.0,
+                            Reference = "MAIe21022022-08033014",
+                            RoomId = 4,
+                            StartDate = new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6104),
+                            UnitType = "Unit"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "In the middle of the central column",
+                            EstimatedQuantitie = 50.0,
+                            IsGrowing = true,
+                            ProductId = 5,
+                            ProductName = "Black Mustard",
+                            RecoltedQuantitie = 0.0,
+                            Reference = "BLAm22022022-14034012",
+                            RoomId = 5,
+                            StartDate = new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6109),
+                            UnitType = "Unit"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "In the middle of the central column",
+                            EstimatedQuantitie = 80.0,
+                            IsGrowing = true,
+                            ProductId = 6,
+                            ProductName = "Sunflower",
+                            RecoltedQuantitie = 0.0,
+                            Reference = "SUNr25022022-18020005",
+                            RoomId = 6,
+                            StartDate = new DateTime(2022, 6, 1, 3, 8, 35, 782, DateTimeKind.Local).AddTicks(6114),
+                            UnitType = "Unit"
                         });
                 });
 
@@ -388,6 +476,40 @@ namespace ProductionManager_EndProject.Migrations
                     b.HasIndex("ProductionId");
 
                     b.ToTable("ProdTasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ProdTaskStatusId = 1,
+                            ProductionId = 1,
+                            TaskDescription = "- Recolt Shitake in growing room 1 and clean old substracts",
+                            TaskName = "Recolt"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ProdTaskStatusId = 1,
+                            ProductionId = 1,
+                            TaskDescription = "- Recolt Maitake in growing room 3 and clean old substracts",
+                            TaskName = "Recolt"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ProdTaskStatusId = 1,
+                            ProductionId = 1,
+                            TaskDescription = "- Check if we have substracts ready to go into the growing rooms",
+                            TaskName = "Grow"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ProdTaskStatusId = 1,
+                            ProductionId = 1,
+                            TaskDescription = "- Big Cleaning of growing room 2",
+                            TaskName = "Clean"
+                        });
                 });
 
             modelBuilder.Entity("ProductionLibrary.ProdTaskStatus", b =>
@@ -460,11 +582,11 @@ namespace ProductionManager_EndProject.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NotOrderedStock")
-                        .HasColumnType("int");
+                    b.Property<double?>("NotOrderedStock")
+                        .HasColumnType("float");
 
-                    b.Property<int>("OrderedStock")
-                        .HasColumnType("int");
+                    b.Property<double?>("OrderedStock")
+                        .HasColumnType("float");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -479,8 +601,8 @@ namespace ProductionManager_EndProject.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("RealStock")
-                        .HasColumnType("int");
+                    b.Property<double>("RealStock")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -490,22 +612,62 @@ namespace ProductionManager_EndProject.Migrations
                         new
                         {
                             Id = 1,
-                            NotOrderedStock = 45,
-                            OrderedStock = 15,
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
                             Price = 18.0,
-                            PriceFor = "kilogram",
+                            PriceFor = "Kilogram",
                             ProductName = "Shitake",
-                            RealStock = 60
+                            RealStock = 40.579999999999998
                         },
                         new
                         {
                             Id = 2,
-                            NotOrderedStock = 6,
-                            OrderedStock = 56,
-                            Price = 26.0,
-                            PriceFor = "kilogram",
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
+                            Price = 26.5,
+                            PriceFor = "Kilogram",
                             ProductName = "Maitake",
-                            RealStock = 62
+                            RealStock = 0.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
+                            Price = 20.0,
+                            PriceFor = "Kilogram",
+                            ProductName = "Nameko",
+                            RealStock = 0.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
+                            Price = 10.0,
+                            PriceFor = "Unit",
+                            ProductName = "Amaranth",
+                            RealStock = 0.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
+                            Price = 6.5,
+                            PriceFor = "Unit",
+                            ProductName = "Black Mustard",
+                            RealStock = 0.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            NotOrderedStock = 0.0,
+                            OrderedStock = 0.0,
+                            Price = 5.2000000000000002,
+                            PriceFor = "Unit",
+                            ProductName = "Sunflower",
+                            RealStock = 0.0
                         });
                 });
 
@@ -590,7 +752,31 @@ namespace ProductionManager_EndProject.Migrations
                             Email = "SmartFood@smartfood.com",
                             Number = 10,
                             PhoneNumber = "02/153.154",
-                            ProductionName = "SmartFood-Brusels",
+                            ProductionName = "SmartFood",
+                            Street = "High Street",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "SmartFoodGreen@smartfood.com",
+                            Number = 10,
+                            PhoneNumber = "02/153.154",
+                            ProductionName = "SmartFoodGreens",
+                            Street = "High Street",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Bruxelles",
+                            Country = "Belgium",
+                            Email = "SmartFoodSpace@smartfood.com",
+                            Number = 10,
+                            PhoneNumber = "02/153.154",
+                            ProductionName = "SmartFoodSpace-Brusels",
                             Street = "High Street",
                             ZIP = 1000
                         });
@@ -625,19 +811,37 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = 1,
                             ProductionId = 1,
-                            RoomName = "Room 1"
+                            RoomName = "Growing Room 1"
                         },
                         new
                         {
                             Id = 2,
                             ProductionId = 1,
-                            RoomName = "Room 2"
+                            RoomName = "Growing Room 2"
                         },
                         new
                         {
                             Id = 3,
                             ProductionId = 1,
-                            RoomName = "Room 3"
+                            RoomName = "Growing Room 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ProductionId = 2,
+                            RoomName = "MicroGreen Room 1"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ProductionId = 2,
+                            RoomName = "MicroGreen Room 2"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ProductionId = 2,
+                            RoomName = "MicroGreen Room 3"
                         });
                 });
 
@@ -749,9 +953,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 31, 21, 42, 50, 708, DateTimeKind.Local).AddTicks(6632),
+                            BirthDay = new DateTime(2022, 6, 1, 3, 8, 35, 776, DateTimeKind.Local).AddTicks(8674),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "b239b4bb-c10d-4456-9ed6-988af67e689d",
+                            ConcurrencyStamp = "f1dea21f-79d3-4f42-8934-aff1b5fdac2e",
                             Country = "Belgium",
                             Email = "max@intec.be",
                             EmailConfirmed = true,
@@ -761,10 +965,10 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "MAX@INTEC.BE",
                             NormalizedUserName = "MAX",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==",
                             PhoneNumber = "02/789.321",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f274d333-747d-4a08-9d51-61c4ae264f51",
+                            SecurityStamp = "3b3215bb-d5a7-4c9e-92ae-f7880e36fe36",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "max",
@@ -774,9 +978,9 @@ namespace ProductionManager_EndProject.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            BirthDay = new DateTime(2022, 5, 31, 21, 42, 50, 712, DateTimeKind.Local).AddTicks(8883),
+                            BirthDay = new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4268),
                             City = "Bruxelles",
-                            ConcurrencyStamp = "be255f4d-8df8-47b2-be1b-2598656bf37d",
+                            ConcurrencyStamp = "0804f8ae-f938-4cba-b490-2aa18b55ebfa",
                             Country = "Belgium",
                             Email = "admin@intec.be",
                             EmailConfirmed = true,
@@ -786,13 +990,63 @@ namespace ProductionManager_EndProject.Migrations
                             NormalizedEmail = "ADMIN@INTEC.BE",
                             NormalizedUserName = "ADMIN",
                             Number = 5,
-                            PasswordHash = "AQAAAAEAACcQAAAAEB09Uu6KPTHtozuhRBw6PeJA5xMrlDrxx2KicCZWIOb39jnAi6vGpve+ohWWEGcvdA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==",
                             PhoneNumber = "02/189.181",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0855c0cc-3dc4-40c4-9928-e747312a4af5",
+                            SecurityStamp = "283ffb98-47b8-4a52-b5c7-56e80f0b6ce5",
                             Street = "Nieuwe Straat",
                             TwoFactorEnabled = false,
                             UserName = "admin",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            BirthDay = new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4330),
+                            City = "Bruxelles",
+                            ConcurrencyStamp = "4e9d2dcc-5e15-4b2a-8350-69e6cce68a2b",
+                            Country = "Belgium",
+                            Email = "worker@intec.be",
+                            EmailConfirmed = true,
+                            FirstName = "Worker",
+                            LastName = "The first one",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "WORKER@INTEC.BE",
+                            NormalizedUserName = "WORKER",
+                            Number = 5,
+                            PasswordHash = "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==",
+                            PhoneNumber = "02/189.181",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d9d296a9-b697-40f0-adde-6fa0a1b15e35",
+                            Street = "Nieuwe Straat",
+                            TwoFactorEnabled = false,
+                            UserName = "worker",
+                            ZIP = 1000
+                        },
+                        new
+                        {
+                            Id = "4",
+                            AccessFailedCount = 0,
+                            BirthDay = new DateTime(2022, 6, 1, 3, 8, 35, 781, DateTimeKind.Local).AddTicks(4345),
+                            City = "Bruxelles",
+                            ConcurrencyStamp = "6f02c956-a23d-453b-b306-b327c5f71603",
+                            Country = "Belgium",
+                            Email = "worker@intec.be",
+                            EmailConfirmed = true,
+                            FirstName = "Manager",
+                            LastName = "The first one",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MANAGER@INTEC.BE",
+                            NormalizedUserName = "MANAGER",
+                            Number = 5,
+                            PasswordHash = "AQAAAAEAACcQAAAAENcfhOix6dZlNmzoJXdzh+ME3CDBWry8Knrt98yHKxmabyL9AE919xKsTAWVIHp26A==",
+                            PhoneNumber = "02/189.181",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b82f2136-fde6-4dca-a61b-18fafdcd5637",
+                            Street = "Nieuwe Straat",
+                            TwoFactorEnabled = false,
+                            UserName = "manager",
                             ZIP = 1000
                         });
                 });

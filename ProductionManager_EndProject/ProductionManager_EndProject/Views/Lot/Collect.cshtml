@@ -20,8 +20,8 @@
                 <span asp-validation-for="Collected" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Collected" class="btn btn-primary" />
-                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId">Cancel</a>
+                <input type="submit" value="Collected" class="btn btn-blue" />
+                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@Model.ProductionId" class="btn btn-red">Cancel</a>
             </div>
         </form>
     </div>
