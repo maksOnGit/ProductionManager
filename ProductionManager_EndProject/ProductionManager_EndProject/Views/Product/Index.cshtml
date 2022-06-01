@@ -5,7 +5,7 @@
 
 @foreach (var product in @Model.products)
 {
-
+@*
     <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
@@ -14,6 +14,31 @@
                 <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-primary bg-danger">Delete</a>
             </li>
         </ul>
-    </div>
+    </div>*@
+
+            <div class="card text-center mb-2 bg-primary" style="filter:drop-shadow(0 7px 0.5rem black)">
+            <div class="card-header">
+                <h5 class="card-title title-box">@product.ProductName</h5>
+            </div>
+            <div class="card-body">
+                <div>
+                    <label style="font-weight:900;" asp-for="@product.Price"></label>
+                    <p class="card-title" style="color:gold;">@product.Price</p>
+                </div>
+                <div>
+                    <label style="font-weight:900;" asp-for="@product.PriceFor"></label>
+                    <p class="card-title" style="color:gold;">@product.PriceFor</p>
+                </div>
+                <div>
+                    <label style="font-weight:900;" asp-for="@product.RealStock"></label>
+                    <p class="card-title" style="color:gold;">@product.RealStock</p>
+                </div>
+                <hr>
+                <div class="mt-5" >
+                <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-blue mr-5 mb-4">Edit</a>
+                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-red ml-5 mb-4">Delete</a>
+                </div>
+            </div>
+        </div>   
 
 }

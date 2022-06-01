@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Selection";    
-    int Counter = 1;
+    
 }
 
 
@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">I see that u don't have any production yet.</h5>
-            <p class="card-title">Let's start by creating one !</p>
+            <p class="card-title">Let's start by creating one (Or contact your admin/manager) !</p>
             <a asp-controller="Production" asp-action="Create" class="btn btn-primary">Start a new Production</a>
         </div>
     </div>
@@ -25,16 +25,14 @@ else
 {
     foreach (var production in Model.AvaiableProductions)
     {
-        <div class="card text-center">
+        <div class="card text-center mb-2 bg-primary" style="filter:drop-shadow(0 7px 0.5rem black)">
             <div class="card-header">
-                Production n°@Counter
+                <h5 class="card-title title-box">@production.ProductionName</h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title">@production.ProductionName</h5>
-                <p class="card-title">@production.City, @production.Country, @production.Street @production.Number</p>
-                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@production.Id" class="btn btn-primary">Select Production</a>
+                <p class="card-title" style="color:gold;">@production.City, @production.Country, @production.Street @production.Number</p>
+                <a asp-controller="Production" asp-action="MainPage" asp-route-id="@production.Id" class="btn btn-blue mt-2">Select Production</a>
             </div>
-        </div>
-        Counter++;
+        </div>   
     }
 }
